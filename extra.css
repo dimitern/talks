@@ -1,0 +1,8 @@
+.reveal h2 {
+  text-transform: initial !important;
+}
+
+.reveal table {
+  border-collapse: collapse;
+  border: none !important;
+}
