@@ -1,8 +1,7 @@
-.reveal h2 {
-  text-transform: initial !important;
+.reveal h2, .reveal h1 {
+  text-transform: none !important;
 }
 
-.reveal table {
-  border-collapse: collapse;
+img {
   border: none !important;
 }
