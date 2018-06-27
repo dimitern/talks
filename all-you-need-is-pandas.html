@@ -28,10 +28,10 @@
 <div class="reveal">
 <div class="slides">
 
-
 <section>
-<section id="slide-orgd3b943c">
-<h2 id="orgd3b943c">All You Need is Pandas</h2>
+<section id="slide-org31a2f32">
+<div class="slide-header"><br /><br /><br /></div>
+<h2 id="org31a2f32">All You Need is Pandas</h2>
 <p>
 <i>Unexpected Success Stories</i>
 </p>
@@ -59,31 +59,243 @@ Dimiter Naydenov<br />
 
 <aside class="notes">
 <p>
-Hello and welcome!
+
+</p>
+
+<p>
+Hello everyone, and thanks for joining!
+</p>
+
+<p>
+My name is Dimiter Naydenov, and today I'm going to talk about my experiences with
+the awesome Pandas library, why I love it, and how surprisingly practical I found it to be.
+</p>
+
+<p>
+Let me start tell you a bit about myself first.
 </p>
 
 </aside>
+</section>
+</section>
+<section>
+<section id="slide-orgb8852b6">
+<div class="slide-header"><br /><br /><br /></div>
+<h2 id="orgb8852b6">About me</h2>
+<p>
+<code>from Bulgaria.Sofia import Dimiter.Naydenov</code>
+</p>
+
+<ul>
+<li><i>into:</i> OSS, Data Science, Clouds, Networking</li>
+
+<li><i>loves:</i> Python, Emacs, Scuba Diving, Sci-Fi</li>
+
+<li><i>likes:</i> Ubuntu, Go, Rust</li>
+
+<li><i>twitter/github:</i> <a href="http://twitter.com/dimitern">@dimitern</a></li>
+
+<li><i>blog:</i> <a href="http://blog.naydenov.net/">blog.naydenov.net</a></li>
+
+</ul>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+I've been a software developer for more than 20 years now.
+</p>
+
+<p>
+I started way back with Basic and Logo, went through Pascal, Delphi, C/C++,
+then C# in the early days of .NET. For 3 years I even did some PHP, and quite
+a lot of JavaScript. Soon after I discovered Python, initially for web-based
+projects with the just recently released Django, later also for desktop
+applications, scripting, and more backend stuff. More recently, I've been using
+Go to build cloud-based software at my job. After 4 years of that I decided to
+become my own boss, started a small company, and got full-time into freelancing.
+</p>
+
+<p>
+Now I'm using Python again full-time, and I'm quite happy about it.
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orgb2b2e7a">
+<div class="slide-header"><br /><br /><br /></div>
+<h2 id="orgb2b2e7a">Pandas?</h2>
+
+<div class="figure">
+<p><img src="./img/many-a-pandas.jpeg" alt="many-a-pandas.jpeg" />
+</p>
+</div>
+
+<p data-fragment-index="1" class="fragment roll-in">
+Well, actually&#x2026; <a href="http://pandas.pydata.org" data-fragment-index="1" class="fragment roll-in">pandas.pydata.org</a>
+</p>
+
+
+<div class="figure">
+<p><img src="./img/pandas_logo.png" alt="pandas_logo.png" data-fragment-index="2" class="fragment roll-in" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+So what about Pandas?
+</p>
+
+<p>
+:)
+</p>
+
+<p>
+How many of you have used Pandas at least once?
+</p>
+
+<p>
+Wow, a lot of people, nice!
+That's great, as my talk is not an introduction to Pandas.
+</p>
+
+<p>
+I've heard about Pandas at EuroPython 2012, and since then I kept hearing a lot
+more about it from different people. As Pandas internally uses NumPy, I was not
+particularly keen about trying it. I've used NumPy before, but only occasionally
+and mostly because it's very fast, but I still find it counter-intuitive, even
+awkward to use.
+</p>
+
+<p>
+A couple of years later I decided to give Pandas a try anyway, and after skimming
+over the very good documentation
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org6540ec2">
+<div class="slide-header"><br /><br /><br /></div>
+<h2 id="org6540ec2">Let's go</h2>
+<p class="fragment (highlight-blue)">
+<img src="./img/high-five-panda.jpg" alt="high-five-panda.jpg" class="fragment (highlight-blue)" />
+Here we go
+</p>
+
+
+</section>
+<section id="slide-org8bf50cc" data-background="./img/many-a-pandas.jpeg" data-background-size="800px" data-background-transition="convex">
+<div class="slide-header"><br /><br /><br /></div>
+<h3 id="org8bf50cc">Pandas!</h3>
+
+
 
 </section>
 </section>
 <section>
-<section id="slide-org44c8d78">
-<h2 id="org44c8d78">What is this all about</h2>
-<div class="outline-text-2" id="text-org44c8d78">
+<section id="slide-org6103fa4">
+<div class="slide-header"><br /><br /><br /></div>
+<h2 id="org6103fa4">all about</h2>
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+Pandas is great for data processing, analysis, reporting, visualization, and can handle
+many thousands of rows quickly and efficiently. Among the Data Science field,
+It's quite popular among those into
+Big Data, Machine Learning
+</p>
+
+
+<p>
+Big Data, Machine Learning, and other
+similar Data Science applications became , Machine Learning, and Big Data,
+and related topics became all It's quite popular among those into Data Science,
+Machine Learning, Big Data, and
+and Last few years  everything seems to
+to be about Data Science, Machine Learning,
+</p>
+
+<p>
+Some might think - that's cool, but I can't think how Pandas would help me of  have no real use for Pandas, as I'm not into "data science"
+field.  stuff, I have no real
+use for Pandas. Well, think again :) I'll show you a few examples
+</p>
+
+<p>
+with boring no real use for Pandas.
+</p>
+
+<p>
+that's just "data science" stuff, I'm  That's not all Pandas is great forThere are a few examples I'd like to shshare with you, which What if I told you Pandas so useful outside the realm of data science is not suitable for  about When you're thinking of data But not I'll share a few applications for Pandas in initially unexpected  as you'll see   I'll share a few examples of a few examples which convinced my Pandas is even more useful than I initially though.
+</p>
+
+<p>
+ of using  found a few times   Pandas useful for more than just that, I'll share a few examples of not so
+typical use cases of not use where cases which initially
+were not examples where I found
+unexpected  of even more
+</p>
+
+<p>
+Initially, when I started Since I initially started using Pandas, I keep discovering new finding new and interesting ways to use
+its   and cases where the power of Pandas can     found it very useful in   share a few examples I wh
+</p>
+
+<p>
+ quickly and
+efficiently. in sorts of data analysis, and c is much easier to use than unlike NumPy  brings the power and flexibility of Python to yh comes with support for multiple e   in general, and lets you  can handle huge data sets, ythousands of provides fast and efficient processing, and visualization , comes and helps  you visualizing and explore , and a lot more, , and  and I'll share a few cases
+conviced me Pandas is also uproved to saved I used Pandas to solve  success, even if the  I did not come up with a solution to solve solved had to solve with and without Pandas,  and  examples where Pandas s which  should hopefully convince you to Pandas where Pandas   which  made  where using Pandas which  conviced me Pandas is a great fit for  helped me discover unexpected examples which helped me  Pandas     me to Pandas  use cases I found Pandas     personal dis
+Specifically how I discovered Pandas,
+and why I think it's a great tool to use in more cases that you than    and us  for more . I'll share a few practical examples which convinced me to I found foexamples  to great way to fit more for more love it  think you should yslove it use it all love it and use it
+and why I think it's great useful the tool I use most of the tof all you need the
+I'll show you a few practical case I In particular, why I think you should
+how and why I became
+a huge fan of Pandas, and show my initial experience with Pandas, and share
+a few practical cases tsome practical applications of Pandas I found  camwhy I
+started using it for became a huge fan of find it can hardly can't use it even in cases where for   for more show you
+a few personal share a
+few examples why I
+became a think you should consider using Pandas in  in more it
+should use it even  share a couple of few examples
+ and why I find it invaluable
+for think share a few practical
+applications I found  interesting and practical
+applications
+  Pandashow I found and why I became a huge
+fan of Pandas how I found omy first  how the Pandas discovering my   how I discovered Pandas,  the first my how I got into the discovered my first experiences with initial how I da few use cases in this talk I'm going to share a couple of  my some insights and hopefully useful insights
+I learned about   and  I'm a huge fan of Python's scientific stack of libraries ll s this is my first talk  in this talk I'll share some talk about and this is my talk, so thanks for joining!
+</p>
+
+</aside>
+</section>
+<section id="slide-org05bea09">
+<div class="slide-header"><br /><br /><br /></div>
+<h3 id="org05bea09">H2.1</h3>
+<div class="outline-text-3" id="text-org05bea09">
 </div>
 </section>
-<section id="slide-orgc1043cb">
-<h3 id="orgc1043cb">H2.1</h3>
-<div class="outline-text-3" id="text-orgc1043cb">
-</div>
-</section>
-<section id="slide-org0eafb06">
-<h4 id="org0eafb06">H2.1.1</h4>
+<section id="slide-orgae796ac">
+<div class="slide-header"><br /><br /><br /></div>
+<h4 id="orgae796ac">H2.1.1</h4>
 </section>
 </section>
 <section>
-<section id="slide-org5d466cf">
-<h2 id="org5d466cf">H3</h2>
+<section id="slide-org6585895">
+<div class="slide-header"><br /><br /><br /></div>
+<h2 id="org6585895">H3</h2>
 </section>
 </section>
 </div>
@@ -111,7 +323,7 @@ minScale: 1.00,
 maxScale: 2.50,
 
 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transition: Reveal.getQueryHash().transition || 'convex', // default/cube/page/concave/zoom/linear/fade/none
 transitionSpeed: 'default',
 multiplex: {
     secret: '', // null if client
@@ -121,10 +333,12 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
+ { src: './reveal.js-3.6.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
  { src: './reveal.js-3.6.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
  { src: './reveal.js-3.6.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js-3.6.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: './reveal.js-3.6.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+ { src: './reveal.js-3.6.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './reveal.js-3.6.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
 });
 </script>
 </body>
