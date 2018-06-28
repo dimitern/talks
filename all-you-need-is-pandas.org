@@ -21,7 +21,7 @@
 #+REVEAL_THEME: sky
 #+REVEAL_HLEVEL: 1
 #+REVEAL_PLUGINS: (classList highlight markdown notes zoom)
-#+REVEAL_SLIDE_HEADER: <br /><br /><br />
+#+REVEAL_SLIDE_HEADER: <br /><br />
 #+REVEAL_TRANS: convex
 #+REVEAL_SPEED: default
 
@@ -58,12 +58,13 @@ Let me start by telling you a bit about myself first.
 
 #+BEGIN_NOTES
 
-I've started over 20 years ago with Basic, went through Pascal, C++, C#,
+I've been a developer for over 20 years, starting with Basic, going through Pascal, C++, C#,
 even PHP for 3 years, before I discovering Python through Django.
 
-Python became my favourite language, and I've used it for web, desktop, and backend software.
+Python is my favourite language, and I've used it for all kinds of projects, not just for web,
+but also desktop apps, scripts, and backend services.
 
-For 4 years I developed a cloud deployment suite in Go at work, then I decided
+For 4 years I worked on a cloud deployment suite ported from Python to Go, then after that I decided
 to go on my own, started a small company, and got full-time into freelancing.
 
 #+END_NOTES
@@ -86,7 +87,7 @@ So what about Pandas?
 
   * Open source (BSD-licensed) Python library
   * Easy-to-use, high-performance data structures
-  * Great for tools for data analysis, built on top of [[http://www.numpy.org/][NumPy]]
+  * Great API for data analysis, built on top of [[http://www.numpy.org/][NumPy]]
   * Well documented: [[http://pandas.pydata.org/pandas-docs/stable/][pandas.pydata.org/pandas-doc/stable/]]
 
  #+BEGIN_NOTES
@@ -107,30 +108,41 @@ So what about Pandas?
 
  #+END_NOTES
 
-* Why Pandas?
+* Pandas Features I Liked
 #+ATTR_REVEAL: :frag (roll-in)
  * Easy to install, very few requirements
- * Nicer to use, and more flexible than NumPy
- * Reads/writes data in most formats you'd need
+ * Fast as NumPy, yet more flexible and nicer to use
+ * Reads/writes data in the most common formats
+ * Works seamlessly with [[https://matplotlib.org/][matplotlib]] for plotting
 
 #+BEGIN_NOTES
 
 First time I've heard about Pandas was at EuroPython 2012, and since then I keep hearing
 more and more about it from many people.
 
-I really liked how much nicer to use Pandas is compared to NumPy, which I still find
-awkward and counter-intuitive.
+Unlike NumPy, which I still find awkward and counter-intuitive to work with, Pandas is
+much nicer to use, more flexible, yet still as fast as NumPy.
 
-It can also read and write data in many formats, including CSV, Excel, HDF5, to name
-just a few.
+Reading and writing data in multiple formats, like CSV, Excel, HDF5, to name a few is
+also an obvious advantage for me.
 
-
-So I had tried Pandas, but at the time I could not find a good use for it.
+And since I think visually most of the time, I liked how easy it is produce matplotlib plots
+from Pandas.
 
 #+END_NOTES
 
-* Back to Real Problems
+* Personal Pain Points
+#+ATTR_REVEAL: :frag (roll-in)
+ * Good documentation, but a few good hands-on guides
+ * Cannot "just use it", need to read a lot first
+ * Indexing is confusing, even without MultiIndex
+ * Can I just get my integers back, please?
 
+#+BEGIN_NOTES
+
+So I tried Pandas, but ultimately could not find a good use for it at the time.
+
+#+END_NOTES
 /Problem:/ Compare SVG paths
 #+ATTR_REVEAL: :frag (highlight-blue)
 [[./img/high-five-panda.jpg]]
