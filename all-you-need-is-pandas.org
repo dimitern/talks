@@ -29,11 +29,7 @@
 * Draft Outline
 
 
-** Input: SVG handwriting sample
-[[./svg-sample-1.svg]]
 
-** Process: Split all strokes to SVG paths
-[[./svg-split-1.svg]]
 
 
 ** Title
