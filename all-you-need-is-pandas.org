@@ -25,6 +25,29 @@
 #+REVEAL_TRANS: convex
 #+REVEAL_SPEED: default
 
+
+* Draft Outline
+
+
+** Input: SVG handwriting sample
+[[./svg-sample-1.svg]]
+
+** Process: Split all strokes to SVG paths
+[[./svg-split-1.svg]]
+
+
+** Title
+
+** About me
+
+** Pandas in 1 minute or less
+
+** Initial Frustration
+
+** Unexpected Success Story #1
+   /Problem:/ Extract characters from SVG handwriting sample page
+
+
 * All You Need is Pandas
 /Unexpected Success Stories/
 
@@ -154,11 +177,3 @@ Here we go
 :reveal_background_trans: convex
 :reveal_background_size: 800px
 :END:
-
-
-
-* all about
-#+BEGIN_NOTES
-
-
-#+END_NOTES

@@ -5,3 +5,176 @@
 img {
   border: none !important;
 }
+
+#svg25509, #svg25510 {
+  background: #fff;
+}
+
+#svg25509 path {
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 100;
+  stroke-width: 1.23;
+  opacity: 0;
+  animation-name: draw;
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+}
+
+#svg25509 #path001.upper-D {
+  animation-delay: 0.5s;
+}
+
+#svg25509 #path002.upper-D {
+  animation-delay: 1s;
+}
+
+#svg25509 #path003.lower-e {
+  animation-delay: 1.5s;
+}
+
+#svg25509 #path004.lower-a {
+  animation-delay: 2s;
+}
+
+#svg25509 #path005.lower-r {
+  animation-delay: 2.5s;
+}
+
+#svg25509 #path006.upper-A {
+  animation-delay: 3s;
+}
+
+#svg25509 #path007.upper-A {
+  animation-delay: 3.5s;
+}
+
+#svg25509 #path008.lower-d {
+  animation-delay: 4s;
+}
+
+#svg25509 #path009.lower-a {
+  animation-delay: 4.5s;
+}
+
+#svg25509 #path010.lower-m {
+  animation-delay: 5s;
+}
+
+#svg25509 #path011.comma {
+  animation-delay: 5.5s;
+}
+
+@keyframes draw {
+  0% { stroke-dashoffset: 100; opacity: 1; }
+  15% { stroke-dashoffset: 50; opacity: 1; }
+  45% { stroke-dashoffset: 25; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+#svg25510 path {
+  stroke-width: 1.23;
+  fill: none;
+  stroke: #000;
+  animation-direction: normal;
+  animation-fill-mode: both;
+  animation-timing-function: linear;
+  animation-duration: 0.5s;
+}
+
+#svg25510 #path001.upper-D {
+  animation-delay: 1.25s;
+  animation-name: split-left;
+}
+
+#svg25510 #path002.upper-D {
+  animation-delay: 1.25s;
+  animation-name: split-right;
+}
+
+#svg25510 #path003.lower-e {
+  animation-delay: 1.75s;
+  animation-name: split-above-right;
+}
+
+#svg25510 #path004.lower-a {
+  animation-delay: 2.25s;
+  animation-name: split-below-right;
+}
+
+#svg25510 #path005.lower-r {
+  animation-delay: 2.25s;
+  animation-name: split-below-right;
+}
+
+#svg25510 #path006.upper-A {
+  animation-delay: 2.75s;
+  animation-name: split-above;
+}
+
+#svg25510 #path007.upper-A {
+  animation-delay: 2.75s;
+  animation-name: split-below;
+}
+
+#svg25510 #path008.lower-d {
+  animation-delay: 3.25s;
+  animation-name: split-right;
+}
+
+#svg25510 #path009.lower-a {
+  animation-delay: 3.5s;
+  animation-name: split-right;
+}
+
+#svg25510 #path010.lower-m {
+  animation-delay: 3.75s;
+  animation-name: split-right;
+}
+
+#svg25510 #path011.comma {
+  animation-delay: 4.25s;
+  animation-name: split-right;
+}
+
+@keyframes split-left {
+  0% { stroke: #000; transform: translate(0px, 2px); }
+  100% { stroke: #000; transform: translate(-2px, 0px); }
+}
+
+@keyframes split-right {
+  0% { stroke: #000; transform: translate(0px, 2px); }
+  100% { stroke: #000; transform: translate(2px, 0px); }
+}
+
+@keyframes split-above {
+  0% { stroke: #000; transform: translate(0px, 0px); }
+  100% { stroke: #000; transform: translate(0px, -5px); }
+}
+
+@keyframes split-below {
+  0% { stroke: #000; transform: translate(0px, 0px); }
+  100% { stroke: #000; transform: translate(0px, 5px); }
+}
+
+@keyframes split-above-left {
+  0% { stroke: #000; transform: translate(0px, 0px); }
+  100% { stroke: #000; transform: translate(-2px, -2px); }
+}
+
+@keyframes split-above-right {
+  0% { stroke: #000; transform: translate(0px, 0px); }
+  100% { stroke: #000; transform: translate(2px, -2px); }
+}
+
+@keyframes split-below-right {
+  0% { stroke: #000; transform: translate(0px, 0px); }
+  100% { stroke: #000; transform: translate(2px, 2px); }
+}
+
+@keyframes split-below-left {
+  0% { stroke: #000; transform: translate(0px, 0px); }
+  100% { stroke: #000; transform: translate(-2px, 2px); }
+}
+
