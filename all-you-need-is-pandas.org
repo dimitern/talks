@@ -13,6 +13,7 @@
 #+OPTIONS: reveal_progress:nil
 #+OPTIONS: reveal_width:1920
 #+OPTIONS: reveal_height:1080
+#+OPTIONS: reveal_history:t
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 1.0
 #+REVEAL_MAX_SCALE: 2.5
@@ -23,14 +24,42 @@
 #+REVEAL_PLUGINS: (classList highlight markdown notes zoom)
 #+REVEAL_SLIDE_HEADER: <br /><br />
 #+REVEAL_TRANS: convex
-#+REVEAL_SPEED: default
+#+REVEAL_SPEED: slow
+#+REVEAL_INIT_SCRIPT: viewDistance:1
 
 
-* Draft Outline
+* SVG Mail Labels Generator
+#+ATTR_REVEAL: :frag (roll-in)
+ * /Problem:/ Send customized letters to many recipients
+ * Users provide a few sample pages of their handwriting
+ * Sample pages are stored as SVGs, usually contain the same text
+ * Handwritten pen strokes, captured using a graphics tablet
+ * /Profit:/ Generate words and paragraphs from multiple letter variants
 
+** High-Level Roadmap
+:PROPERTIES:
+:reveal_background: ./story1-overview.svg
+:reveal_background_trans: zoom
+:reveal_background_size: 1152px
+:END:
 
+** Input: SVG handwriting sample
+:PROPERTIES:
+:CUSTOM_ID: input-svg
+:END:
 
+[[./svg-sample-1.svg]]
 
+[[#split-svg][Split]]
+
+** Process: Split all strokes to SVG paths
+:PROPERTIES:
+:CUSTOM_ID: split-svg
+:END:
+
+[[./svg-split-1.svg]]
+
+[[#input-svg][Input]]
 
 ** Title
 
@@ -149,7 +178,6 @@ And since I think visually most of the time, I liked how easy it is produce matp
 from Pandas.
 
 #+END_NOTES
-
 * Personal Pain Points
 #+ATTR_REVEAL: :frag (roll-in)
  * Good documentation, but a few good hands-on guides
@@ -173,3 +201,17 @@ Here we go
 :reveal_background_trans: convex
 :reveal_background_size: 800px
 :END:
+
+* Story #1
+
+** Problem: Extract letters from handwriting sample
+
+** Input: Handwritten sample page (SVG)
+
+** Parsing: Extract flat list of SVG paths for pen strokes
+
+** Combining: Compare each stroke with all nearby candidates
+   Check for:
+   * overlapping paths
+   * intersecting paths
+**
