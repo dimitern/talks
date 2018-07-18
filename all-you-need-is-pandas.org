@@ -3,7 +3,8 @@
 #+AUTHOR: Dimiter Naydenov
 #+EMAIL: @dimitern
 
-#+OPTIONS: num:nil toc:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
 #+OPTIONS: reveal_title_slide:nil
 #+OPTIONS: reveal_rolling_links:nil
 #+OPTIONS: reveal_keyboard:t
@@ -13,35 +14,53 @@
 #+OPTIONS: reveal_progress:nil
 #+OPTIONS: reveal_width:1920
 #+OPTIONS: reveal_height:1080
-#+OPTIONS: reveal_history:t
+#+OPTIONS: reveal_history:nil
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 1.0
 #+REVEAL_MAX_SCALE: 2.5
-#+REVEAL_ROOT: ./reveal.js-3.6.0
-#+REVEAL_EXTRA_CSS: ./extra.css
 #+REVEAL_THEME: sky
+#+REVEAL_ROOT: reveal.js-3.6.0/
+#+REVEAL_EXTRA_CSS: extra.css
+#+REVEAL_TRANS: cube
+#+REVEAL_SPEED: default
 #+REVEAL_HLEVEL: 1
-#+REVEAL_PLUGINS: (classList highlight markdown notes zoom)
-#+REVEAL_SLIDE_HEADER: <br /><br />
-#+REVEAL_TRANS: convex
-#+REVEAL_SPEED: slow
-#+REVEAL_INIT_SCRIPT: viewDistance:1
+#+REVEAL_PLUGINS: (classList highlight notes zoom)
+#+REVEAL_SLIDE_HEADER: <p></p>
+#+REVEAL_DEFAULT_FRAG_STYLE: roll-in
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: slide
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_SIZE: 800px
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_REPEAT: no-repeat
 
 
 * SVG Mail Labels Generator
-#+ATTR_REVEAL: :frag (roll-in)
- * /Problem:/ Send customized letters to many recipients
- * Users provide a few sample pages of their handwriting
- * Sample pages are stored as SVGs, usually contain the same text
- * Handwritten pen strokes, captured using a graphics tablet
- * /Profit:/ Generate words and paragraphs from multiple letter variants
+#+ATTR_REVEAL: :frag (t)
+   1. Capture handwritten SVG sample pages from users
+   2. Process each users' samples with a multi-stage pipeline
+   3. Build a reusable set of SVG letter variants per user
+   4. Generate SVG mail labels using users' letter variants
 
-** High-Level Roadmap
+** Capture Handwritten SVG Samples
 :PROPERTIES:
-:reveal_background: ./story1-overview.svg
-:reveal_background_trans: zoom
-:reveal_background_size: 1152px
+:reveal_background: img/story1-capture.svg
 :END:
+
+*** Example Input
+:PROPERTIES:
+:CUSTOM_ID: input-svg
+:END:
+
+ [[./svg-sample-1.svg]]
+
+** Processing
+:PROPERTIES:
+:reveal_background: ./story1-processing.svg
+:reveal_background_trans: slide
+:reveal_background_size: 800px
+:END:
+
+
+** Output
+
 
 ** Input: SVG handwriting sample
 :PROPERTIES:

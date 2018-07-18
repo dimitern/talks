@@ -14,6 +14,7 @@
    height="240px"
    viewBox="0 0 140.04026 58.411994"
    id="svg25510"
+   onload="window.document.firstElementChild.unpauseAnimations();"
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="svg-sample-1.svg">

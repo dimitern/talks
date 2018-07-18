@@ -1,5 +1,13 @@
+.reveal.cube .slides section:not(.stack)::before {
+  background-color: transparent;
+}
+
+.reveal.cube .slides section:not(.stack)::after {
+  box-shadow: none;
+}
+
 .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-  text-transform: none !important;
+  text-transform: none;
 }
 
 img {
@@ -19,7 +27,8 @@ img {
   animation-duration: 6s;
   animation-fill-mode: forwards;
   animation-timing-function: ease;
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
 }
 
 #svg25509 #path001.upper-D {
@@ -81,6 +90,7 @@ img {
   animation-fill-mode: both;
   animation-timing-function: linear;
   animation-duration: 0.5s;
+  animation-play-state: paused;
 }
 
 #svg25510 #path001.upper-D {
