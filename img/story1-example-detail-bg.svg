@@ -1,57 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?xml-stylesheet type="text/css" href="extra.css" ?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="560px"
-   height="240px"
-   viewBox="0 0 140.04026 58.411994"
-   id="svg25510"
-   onload="window.document.firstElementChild.unpauseAnimations();"
-   version="1.1"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="svg-sample-1.svg">
-  <defs
-     id="defs25511">
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-1284.98"
-     inkscape:cy="-493.65143"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     fit-margin-left="0"
-     fit-margin-top="0"
-     fit-margin-bottom="0"
-     fit-margin-right="0"
-     showborder="true" />
-  <metadata
-     id="metadata25514">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     width="518px"
+     height="281px"
+     version="1.1">
+  <defs>
+    <linearGradient
+        x1="0%" y1="0%" x2="0%" y2="100%"
+        id="mx-gradient-f5f5f5-1-ffffff-1-s-0">
+      <stop offset="0%" style="stop-color:#f5f5f5"/>
+      <stop offset="100%" style="stop-color:#ffffff"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0.5,0.5)">
+    <g id="cell-20">
+      <path d="M 0 0 L 504.78 0 L 504.78 258 L 424.78 258 L 434.11 280 L 398.78 258 L 0 258 Z"
+            fill="url(#mx-gradient-f5f5f5-1-ffffff-1-s-0)"
+            stroke="#666666" stroke-miterlimit="10"
+            transform="rotate(180,252.39,140)"
+            pointer-events="none"/>
+    </g>
+  </g>
+  <g inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      transform="translate(-1178.5514,19.701221)">
     <path

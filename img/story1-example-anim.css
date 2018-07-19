@@ -1,0 +1,63 @@
+#svg2 #g16 path {
+  stroke-dasharray: 100 100;
+  stroke-dashoffset: 100;
+  stroke-width: 1.23;
+  opacity: 0;
+  animation-name: draw;
+  animation-duration: 6s;
+  animation-fill-mode: both;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+  animation-play-state: paused;
+}
+
+#svg2 #path001.upper-D {
+  animation-delay: 0.5s;
+}
+
+#svg2 #path002.upper-D {
+  animation-delay: 1s;
+}
+
+#svg2 #path003.lower-e {
+  animation-delay: 1.5s;
+}
+
+#svg2 #path004.lower-a {
+  animation-delay: 2s;
+}
+
+#svg2 #path005.lower-r {
+  animation-delay: 2.5s;
+}
+
+#svg2 #path006.upper-A {
+  animation-delay: 3s;
+}
+
+#svg2 #path007.upper-A {
+  animation-delay: 3.5s;
+}
+
+#svg2 #path008.lower-d {
+  animation-delay: 4s;
+}
+
+#svg2 #path009.lower-a {
+  animation-delay: 4.5s;
+}
+
+#svg2 #path010.lower-m {
+  animation-delay: 5s;
+}
+
+#svg2 #path011.comma {
+  animation-delay: 5.5s;
+}
+
+@keyframes draw {
+  0% { stroke-dashoffset: 100; opacity: 1; }
+  15% { stroke-dashoffset: 50; opacity: 1; }
+  45% { stroke-dashoffset: 25; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
