@@ -1,6 +1,5 @@
 (function($) {
-
     console.log($);
-    var $slide = $('#slide-svg-example');
+    var $slide = $('#slide-example-page');
     console.log($slide);
 }(window.jQuery));

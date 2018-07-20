@@ -32,31 +32,36 @@
 #+REVEAL_DEFAULT_SLIDE_BACKGROUND_SIZE: 800px
 #+REVEAL_DEFAULT_SLIDE_BACKGROUND_REPEAT: no-repeat
 
-
 * SVG Mail Labels Generator
+:PROPERTIES:
+:reveal_data_state: exampleoutputshown
+:CUSTOM_ID: example-output
+:END:
+
+#+ATTR_REVEAL: :frag t
+*SVG*: XML-based standard for /Scalable Vector Graphics/.\\
+
+\\
+
+#+ATTR_REVEAL: :frag t
+/Example Output/\\
+[[./img/example-label.svg]]\\
+[[./img/story1-example-page-bg.svg]]\\
+[[./img/example-label.svg]]
+
+\\
+
+* Multi-Stage Pipeline
 #+ATTR_REVEAL: :frag (t)
-   1. Acquire samples of users' handwriting as SVG pages
-   2. Process each users' samples with a multi-stage pipeline
-   3. Build a reusable set of SVG letter variants per user
-   4. Generate SVG mail labels using users' letter variants
+   1. Acquire samples of users' handwriting in SVG format
+   2. Split SVG pages into many smaller SVGs (for each letter / symbol)
+   3. Build word SVGs from those letters
+   4. Generate mail label SVGs from those words
 
 ** Acquiring Handwriting Samples
 :PROPERTIES:
-:reveal_background: img/story1-capture.svg
+:reveal_background: img/story1-acquire.svg
 :END:
-
-*** /Example SVG Page/
-    :PROPERTIES:
-    :reveal_background: img/story1-example-excerpt.svg
-    :reveal_background_position: 60% 40%
-    :reveal_data_state: svgexampleshown
-    :CUSTOM_ID: svg-example
-    :END:
-
- \\
-
- #+ATTR_REVEAL: :frag fade-down
- [[./img/story1-example-detail.svg]]
 
 ** Processing
 :PROPERTIES:
@@ -64,6 +69,20 @@
 :END:
 
 ** Output
+
+** /Example SVG Page/
+:PROPERTIES:
+:reveal_background: img/story1-example-page-bg.svg
+:reveal_background_position: 50% 40%
+:reveal_data_state: examplepageshown
+:CUSTOM_ID: example-page
+:END:
+
+[[./img/example-page.svg]]
+
+#+ATTR_REVEAL: :frag fade-down none :frag_idx 1 2
+[[./img/example-detail.svg]]
+[[./img/story1-example-detail-bg.svg]]
 
 
 ** Input: SVG handwriting sample
@@ -94,6 +113,12 @@
 
 ** Unexpected Success Story #1
    /Problem:/ Extract characters from SVG handwriting sample page
+
+* Parsing
+
+| index | xmin | ymin | xmax | ymax | path |
+|-------+------+------+------+------+------|
+|     1 | x0   | y0   | x1   | y1   | p1   |
 
 
 * All You Need is Pandas
@@ -237,4 +262,3 @@ Here we go
    Check for:
    * overlapping paths
    * intersecting paths
-**

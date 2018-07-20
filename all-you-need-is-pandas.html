@@ -28,53 +28,84 @@
 <div class="reveal">
 <div class="slides">
 
-
 <section>
-<section id="slide-org7ac9e21" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-example-output" data-state="exampleoutputshown" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="org7ac9e21">SVG Mail Labels Generator</h2>
-<ol>
-<li class="fragment roll-in">Acquire samples of users' handwriting as SVG pages</li>
-<li class="fragment roll-in">Process each users' samples with a multi-stage pipeline</li>
-<li class="fragment roll-in">Build a reusable set of SVG letter variants per user</li>
-<li class="fragment roll-in">Generate SVG mail labels using users' letter variants</li>
+<h2 id="example-output"><a id="orgf6d5286"></a>SVG Mail Labels Generator</h2>
+<p class="fragment roll-in">
+<b>SVG</b>: XML-based standard for <i>Scalable Vector Graphics</i>.<br />
+</p>
 
-</ol>
-
-</section>
-<section id="slide-orge137d81" data-background="img/story1-capture.svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
-<div class="slide-header"><br/><br/></div>
-<h3 id="orge137d81">Acquiring Handwriting Samples</h3>
-</section>
-<section id="slide-svg-example" data-state="svgexampleshown" data-background="img/story1-example-excerpt.svg" data-background-size="800px" data-background-position="60% 40%" data-background-repeat="no-repeat" data-background-transition="slide">
-<div class="slide-header"><br/><br/></div>
-<h4 id="svg-example"><a id="orgbdd700a"></a><i>Example SVG Page</i></h4>
 <p>
 <br />
 </p>
 
+<p class="fragment roll-in">
+<i>Example Output</i><br />
+<object type="image/svg+xml" data="./img/example-label.svg" class="fragment roll-in">
+Sorry, your browser does not support SVG.</object><br />
+<object type="image/svg+xml" data="./img/story1-example-page-bg.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object><br />
+<object type="image/svg+xml" data="./img/example-label.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+
+<p>
+<br />
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb9f11f0" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<div class="slide-header"><br/><br/></div>
+<h2 id="orgb9f11f0">Multi-Stage Pipeline</h2>
+<ol>
+<li class="fragment roll-in">Acquire samples of users' handwriting in SVG format</li>
+<li class="fragment roll-in">Split SVG pages into many smaller SVGs (for each letter / symbol)</li>
+<li class="fragment roll-in">Build word SVGs from those letters</li>
+<li class="fragment roll-in">Generate mail label SVGs from those words</li>
+
+</ol>
+
+</section>
+<section id="slide-org83caeed" data-background="img/story1-acquire.svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<div class="slide-header"><br/><br/></div>
+<h3 id="org83caeed">Acquiring Handwriting Samples</h3>
+
+</section>
+<section id="slide-org74ad8b6" data-background="img/story1-processing.svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<div class="slide-header"><br/><br/></div>
+<h3 id="org74ad8b6">Processing</h3>
+
+</section>
+<section id="slide-org6fa3162" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<div class="slide-header"><br/><br/></div>
+<h3 id="org6fa3162">Output</h3>
+
+</section>
+<section id="slide-example-page" data-state="examplepageshown" data-background="img/story1-example-page-bg.svg" data-background-size="800px" data-background-position="50% 40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<div class="slide-header"><br/><br/></div>
+<h3 id="example-page"><a id="org8515fba"></a><i>Example SVG Page</i></h3>
 
 <div class="figure">
-<p><object type="image/svg+xml" data="./img/story1-example-detail.svg" class="fragment fade-down">
+<p><object type="image/svg+xml" data="./img/example-page.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
-</section>
-<section id="slide-org9e5d847" data-background="img/story1-processing.svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
-<div class="slide-header"><br/><br/></div>
-<h3 id="org9e5d847">Processing</h3>
-
-</section>
-<section id="slide-orgec5f9ed" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
-<div class="slide-header"><br/><br/></div>
-<h3 id="orgec5f9ed">Output</h3>
+<p data-fragment-index="1 2" class="fragment fade-down none">
+<object type="image/svg+xml" data="./img/example-detail.svg" class="fragment fade-down none" data-fragment-index="1 2">
+Sorry, your browser does not support SVG.</object>
+<object type="image/svg+xml" data="./img/story1-example-detail-bg.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
 
 
 </section>
 <section id="slide-input-svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="input-svg"><a id="org07a0ea2"></a>Input: SVG handwriting sample</h3>
+<h3 id="input-svg"><a id="orgde8551a"></a>Input: SVG handwriting sample</h3>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="./svg-sample-1.svg" class="org-svg">
@@ -89,7 +120,7 @@ Sorry, your browser does not support SVG.</object>
 </section>
 <section id="slide-split-svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="split-svg"><a id="orgd6ead6f"></a>Process: Split all strokes to SVG paths</h3>
+<h3 id="split-svg"><a id="orgb807ed5"></a>Process: Split all strokes to SVG paths</h3>
 
 <div class="figure">
 <p><object type="image/svg+xml" data="./svg-split-1.svg" class="org-svg">
@@ -102,40 +133,84 @@ Sorry, your browser does not support SVG.</object>
 </p>
 
 </section>
-<section id="slide-org70dd52d" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org2453598" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="org70dd52d">Title</h3>
+<h3 id="org2453598">Title</h3>
 
 </section>
-<section id="slide-org547bc6e" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org07954c0" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="org547bc6e">About me</h3>
+<h3 id="org07954c0">About me</h3>
 
 </section>
-<section id="slide-orgd3dc1df" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-orgae441ca" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="orgd3dc1df">Pandas in 1 minute or less</h3>
+<h3 id="orgae441ca">Pandas in 1 minute or less</h3>
 
 </section>
-<section id="slide-orgd68eb57" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org9f94da4" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="orgd68eb57">Initial Frustration</h3>
+<h3 id="org9f94da4">Initial Frustration</h3>
 
 </section>
-<section id="slide-org3f47a98" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org1348065" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="org3f47a98">Unexpected Success Story #1</h3>
+<h3 id="org1348065">Unexpected Success Story #1</h3>
 <p>
 <i>Problem:</i> Extract characters from SVG handwriting sample page
 </p>
+
+</section>
+</section>
+<section>
+<section id="slide-org92d397d" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<div class="slide-header"><br/><br/></div>
+<h2 id="org92d397d">Parsing</h2>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">index</th>
+<th scope="col" class="org-left">xmin</th>
+<th scope="col" class="org-left">ymin</th>
+<th scope="col" class="org-left">xmax</th>
+<th scope="col" class="org-left">ymax</th>
+<th scope="col" class="org-left">path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">x0</td>
+<td class="org-left">y0</td>
+<td class="org-left">x1</td>
+<td class="org-left">y1</td>
+<td class="org-left">p1</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
 </section>
 <section>
-<section id="slide-org43c8e93" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org0378357" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="org43c8e93">All You Need is Pandas</h2>
+<h2 id="org0378357">All You Need is Pandas</h2>
 <p>
 <i>Unexpected Success Stories</i>
 </p>
@@ -182,9 +257,9 @@ Let me start by telling you a bit about myself first.
 </section>
 </section>
 <section>
-<section id="slide-org827947d" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org730f236" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="org827947d">About me</h2>
+<h2 id="org730f236">About me</h2>
 <p>
 <code>from Bulgaria.Sofia import Dimiter.Naydenov</code>
 </p>
@@ -221,9 +296,9 @@ to go on my own, started a small company, and got full-time into freelancing.
 </section>
 </section>
 <section>
-<section id="slide-orge8f16b8" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org92c606a" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="orge8f16b8">Pandas?</h2>
+<h2 id="org92c606a">Pandas?</h2>
 
 <div class="figure">
 <p><img src="./img/many-a-pandas.jpeg" alt="many-a-pandas.jpeg" class="fragment appear" />
@@ -246,9 +321,9 @@ So what about Pandas?
 </aside>
 
 </section>
-<section id="slide-org1532386" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-orgbef22d6" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="org1532386"><code>import pandas as pd</code></h3>
+<h3 id="orgbef22d6"><code>import pandas as pd</code></h3>
 
 <div class="figure">
 <p><img src="./img/pandas_logo.png" alt="pandas_logo.png" />
@@ -297,9 +372,9 @@ Wow, not a lot of people, that's great! No need for an introduction then.
 </section>
 </section>
 <section>
-<section id="slide-orge2efed8" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-orgccf499f" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="orge2efed8">Pandas Features I Liked</h2>
+<h2 id="orgccf499f">Pandas Features I Liked</h2>
 <ul>
 <li class="fragment roll-in">Easy to install, very few requirements</li>
 <li class="fragment roll-in">Fast as NumPy, yet more flexible and nicer to use</li>
@@ -337,9 +412,9 @@ from Pandas.
 </section>
 </section>
 <section>
-<section id="slide-org5287776" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-orged6724d" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="org5287776">Personal Pain Points</h2>
+<h2 id="orged6724d">Personal Pain Points</h2>
 <ul>
 <li class="fragment roll-in">Good documentation, but a few good hands-on guides</li>
 <li class="fragment roll-in">Cannot "just use it", need to read a lot first</li>
@@ -367,37 +442,37 @@ Here we go
 </p>
 
 </section>
-<section id="slide-org186fcf9" data-background="./img/many-a-pandas.jpeg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="convex">
+<section id="slide-org9c64019" data-background="./img/many-a-pandas.jpeg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="convex">
 <div class="slide-header"><br/><br/></div>
-<h3 id="org186fcf9">Pandas!</h3>
+<h3 id="org9c64019">Pandas!</h3>
 
 </section>
 </section>
 <section>
-<section id="slide-orgbf63396" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-orgfe19e4c" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="orgbf63396">Story #1</h2>
-<div class="outline-text-2" id="text-orgbf63396">
+<h2 id="orgfe19e4c">Story #1</h2>
+<div class="outline-text-2" id="text-orgfe19e4c">
 </div>
 </section>
-<section id="slide-orgcfe5deb" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org1d1432a" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="orgcfe5deb">Problem: Extract letters from handwriting sample</h3>
+<h3 id="org1d1432a">Problem: Extract letters from handwriting sample</h3>
 
 </section>
-<section id="slide-org6720cd9" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-orgd0baf70" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="org6720cd9">Input: Handwritten sample page (SVG)</h3>
+<h3 id="orgd0baf70">Input: Handwritten sample page (SVG)</h3>
 
 </section>
-<section id="slide-orgd6335af" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org1765267" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="orgd6335af">Parsing: Extract flat list of SVG paths for pen strokes</h3>
+<h3 id="org1765267">Parsing: Extract flat list of SVG paths for pen strokes</h3>
 
 </section>
-<section id="slide-org755c06f" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-org263adfb" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="org755c06f">Combining: Compare each stroke with all nearby candidates</h3>
+<h3 id="org263adfb">Combining: Compare each stroke with all nearby candidates</h3>
 <p>
 Check for:
 </p>
@@ -406,9 +481,6 @@ Check for:
 <li>intersecting paths</li>
 
 </ul>
-<p>
-**
-</p>
 </section>
 </section>
 </div>

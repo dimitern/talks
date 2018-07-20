@@ -1,58 +1,50 @@
-#svg2 #g16 path {
+#layer1 path {
   stroke-dasharray: 100 100;
   stroke-dashoffset: 100;
-  stroke-width: 1.23;
+  stroke-width: 1;
   opacity: 0;
   animation-name: draw;
-  animation-duration: 6s;
-  animation-fill-mode: both;
-  animation-timing-function: ease;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-play-state: paused;
 }
 
-#svg2 #path001.upper-D {
-  animation-delay: 0.5s;
+#layer1 path:nth-child(1) {
+  animation-delay: 0;
 }
 
-#svg2 #path002.upper-D {
-  animation-delay: 1s;
+#layer1 path:nth-child(2) {
+  animation-delay: 1.2s;
 }
 
-#svg2 #path003.lower-e {
-  animation-delay: 1.5s;
+#layer1 path:nth-child(3) {
+  animation-delay: 1.8s;
 }
 
-#svg2 #path004.lower-a {
+#layer1 path:nth-child(4) {
   animation-delay: 2s;
 }
 
-#svg2 #path005.lower-r {
+#layer1 path:nth-child(5) {
   animation-delay: 2.5s;
 }
 
-#svg2 #path006.upper-A {
+#layer1 path:nth-child(6) {
   animation-delay: 3s;
 }
 
-#svg2 #path007.upper-A {
+#layer1 path:nth-child(7) {
   animation-delay: 3.5s;
 }
 
-#svg2 #path008.lower-d {
+#layer1 path:nth-child(8) {
   animation-delay: 4s;
 }
 
-#svg2 #path009.lower-a {
+#layer1 path:nth-child(9) {
   animation-delay: 4.5s;
-}
-
-#svg2 #path010.lower-m {
-  animation-delay: 5s;
-}
-
-#svg2 #path011.comma {
-  animation-delay: 5.5s;
 }
 
 @keyframes draw {
