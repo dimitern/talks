@@ -14,7 +14,7 @@
 #+OPTIONS: reveal_progress:nil
 #+OPTIONS: reveal_width:1920
 #+OPTIONS: reveal_height:1080
-#+OPTIONS: reveal_history:nil
+#+OPTIONS: reveal_history:t
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 1.0
 #+REVEAL_MAX_SCALE: 2.5
@@ -32,102 +32,22 @@
 #+REVEAL_DEFAULT_SLIDE_BACKGROUND_SIZE: 800px
 #+REVEAL_DEFAULT_SLIDE_BACKGROUND_REPEAT: no-repeat
 
-* SVG Mail Labels Generator
-:PROPERTIES:
-:reveal_data_state: exampleoutputshown
-:CUSTOM_ID: example-output
-:END:
-
-#+ATTR_REVEAL: :frag t
-*SVG*: XML-based standard for /Scalable Vector Graphics/.\\
-
-\\
-
-#+ATTR_REVEAL: :frag t
-/Example Output/\\
-[[./img/example-label.svg]]\\
-[[./img/story1-example-page-bg.svg]]\\
-[[./img/example-label.svg]]
-
-\\
-
-* Multi-Stage Pipeline
-#+ATTR_REVEAL: :frag (t)
-   1. Acquire samples of users' handwriting in SVG format
-   2. Split SVG pages into many smaller SVGs (for each letter / symbol)
-   3. Build word SVGs from those letters
-   4. Generate mail label SVGs from those words
-
-** Acquiring Handwriting Samples
-:PROPERTIES:
-:reveal_background: img/story1-acquire.svg
-:END:
-
-** Processing
-:PROPERTIES:
-:reveal_background: img/story1-processing.svg
-:END:
-
-** Output
-
-** /Example SVG Page/
-:PROPERTIES:
-:reveal_background: img/story1-example-page-bg.svg
-:reveal_background_position: 50% 40%
-:reveal_data_state: examplepageshown
-:CUSTOM_ID: example-page
-:END:
-
-[[./img/example-page.svg]]
-
-#+ATTR_REVEAL: :frag fade-down none :frag_idx 1 2
-[[./img/example-detail.svg]]
-[[./img/story1-example-detail-bg.svg]]
-
-
-** Input: SVG handwriting sample
-:PROPERTIES:
-:CUSTOM_ID: input-svg
-:END:
-
-[[./svg-sample-1.svg]]
-
-[[#split-svg][Split]]
-
-** Process: Split all strokes to SVG paths
-:PROPERTIES:
-:CUSTOM_ID: split-svg
-:END:
-
-[[./svg-split-1.svg]]
-
-[[#input-svg][Input]]
-
-** Title
-
-** About me
-
-** Pandas in 1 minute or less
-
-** Initial Frustration
-
-** Unexpected Success Story #1
-   /Problem:/ Extract characters from SVG handwriting sample page
-
-* Parsing
-
-| index | xmin | ymin | xmax | ymax | path |
-|-------+------+------+------+------+------|
-|     1 | x0   | y0   | x1   | y1   | p1   |
-
 
 * All You Need is Pandas
+:PROPERTIES:
+:CUSTOM_ID: title
+:END:
+
 /Unexpected Success Stories/
 
 \\
 \\
 
 Dimiter Naydenov
+
+[[https://twitter.com/dimitern/][@dimitern]]
+[[https://twitter.com/dimitern/][file:img/icon-twitter.svg]]
+[[https://github.com/dimitern/][file:img/icon-github.svg]]
 
 \\
 \\
@@ -144,13 +64,15 @@ the awesome Pandas library, why I love it, and how surprisingly practical I foun
 Let me start by telling you a bit about myself first.
 
 #+END_NOTES
+
 * About me
+:PROPERTIES:
+:CUSTOM_ID: about-me
+:END:
 
 =from Bulgaria.Sofia import Dimiter.Naydenov=
 
  * /loves:/ Python, Emacs, Ubuntu, Scuba Diving, Sci-Fi
-
- * /twitter/github:/ [[http://twitter.com/dimitern][@dimitern]]  /blog:/ [[http://blog.naydenov.net/][blog.naydenov.net]]
 
 #+BEGIN_NOTES
 
@@ -166,7 +88,11 @@ to go on my own, started a small company, and got full-time into freelancing.
 #+END_NOTES
 
 * Pandas?
-#+ATTR_REVEAL: :frag appear
+:PROPERTIES:
+:CUSTOM_ID: pandas
+:END:
+
+#+ATTR_REVEAL: :frag t
 [[./img/many-a-pandas.jpeg]]
 
 #+BEGIN_NOTES
@@ -178,6 +104,9 @@ So what about Pandas?
 #+END_NOTES
 
 ** =import pandas as pd=
+:PROPERTIES:
+:CUSTOM_ID: import-pandas
+:END:
 
  [[./img/pandas_logo.png]]
 
@@ -204,7 +133,7 @@ So what about Pandas?
 
  #+END_NOTES
 
-* Pandas Features I Liked
+* Pandas, Best of
 #+ATTR_REVEAL: :frag (roll-in)
  * Easy to install, very few requirements
  * Fast as NumPy, yet more flexible and nicer to use
@@ -226,7 +155,8 @@ And since I think visually most of the time, I liked how easy it is produce matp
 from Pandas.
 
 #+END_NOTES
-* Personal Pain Points
+
+* Pandas, Sad
 #+ATTR_REVEAL: :frag (roll-in)
  * Good documentation, but a few good hands-on guides
  * Cannot "just use it", need to read a lot first
@@ -238,27 +168,104 @@ from Pandas.
 So I tried Pandas, but ultimately could not find a good use for it at the time.
 
 #+END_NOTES
-/Problem:/ Compare SVG paths
-#+ATTR_REVEAL: :frag (highlight-blue)
-[[./img/high-five-panda.jpg]]
-Here we go
 
-** Pandas!
+* _Story 1:_ Mail Labels Generator
 :PROPERTIES:
-:reveal_background: ./img/many-a-pandas.jpeg
-:reveal_background_trans: convex
-:reveal_background_size: 800px
+:CUSTOM_ID: story1-svg-mail-labels-generator
 :END:
 
-* Story #1
+/Goal:/ Send personalized mail, labeled  in sender's handwriting.
 
-** Problem: Extract letters from handwriting sample
+** Requirements
+:PROPERTIES:
+:CUSTOM_ID: story1-requirements
+:END:
+ #+ATTR_REVEAL: :frag (t)
+   1. Acquire samples of users' handwriting as SVG files
+   2. Extract individual letter/symbol SVGs from each sample page
+   3. Compose arbitrary word SVGs using the letters
+   4. Generate mail label SVGs from those words
 
-** Input: Handwritten sample page (SVG)
+** Acquiring Handwriting Samples
+:PROPERTIES:
+:reveal_background: img/story1-acquire.svg
+:CUSTOM_ID: story1-acquire-handwriting
+:END:
 
-** Parsing: Extract flat list of SVG paths for pen strokes
+*** Example Input
+:PROPERTIES:
+:reveal_background: img/story1-example-page-bg.svg
+:reveal_background_position: 50% 40%
+:reveal_data_state: example-input-shown
+:CUSTOM_ID: story1-example-input
+:END:
 
-** Combining: Compare each stroke with all nearby candidates
-   Check for:
-   * overlapping paths
-   * intersecting paths
+ [[./img/example-page.svg]]
+
+ #+ATTR_REVEAL: :frag fade-down :frag_idx 1
+ [[./img/example-detail.svg]]
+ [[./img/story1-example-detail-bg.svg]]
+
+ \\
+ \\
+
+ /Excerpt of one SVG sample page for a user./
+
+** Processing
+:PROPERTIES:
+:reveal_background: img/story1-processing.svg
+:CUSTOM_ID: story1-processing
+:END:
+
+*** Parsing
+:PROPERTIES:
+:CUSTOM_ID: story1-parsing
+:END:
+#+ATTR_REVEAL: :frag t
+
+Problem #1:
+
+|-------+------+------+------+------+------|
+| index | xmin | ymin | xmax | ymax | path |
+|-------+------+------+------+------+------|
+|     1 | x0   | y0   | x1   | y1   | p1   |
+|-------+------+------+------+------+------|
+
+** Example Output
+:PROPERTIES:
+:CUSTOM_ID: story1-example-output
+:END:
+[[./img/story1-example-label.svg]]\\
+/Generated SVG mail label for another user./
+
+* _Story 2:_ Norwegian Business Registry
+
+/Goal:/ Fast daily import of millions of CSV rows into PostgreSQL.
+
+** Input Data
+
+ * Open Data, free to use via an API, or as a complete CSV download
+ * Contains all companies registered in Norway (over 1 million)
+ * Download link: [[http://data.brreg.no/enhetsregisteret/download/enheter][data.brreg.no]]
+ * CSV file with 40 columns is about 345MB when unzipped
+ * 40 columns in total, but only 5 are need for the import
+
+** Environment
+
+ * Django back-office web application using PostgreSQL and Celery.
+ * Deployed on a small AWS VM instance (2GB RAM, 8GB HDD).
+ * Used to validate and analyze e-invoice API traffic.
+ * Reconciles e-invoice coming mostly from Norway, but also across EU
+ * Needs fast lookups by Organization/VAT number for known companies
+
+** Import Procedure
+
+ #+ATTR_REVEAL: :frag (t)
+   1. Download and unzip the CSV file
+   2. Load all 1.1M+ rows  only 6 out of the 65 column, 1.1M+ Load
+   2. Extract 6 of the 65 columns in the CSV, Only a few of Filter out most of the datath
+   3. Compose arbitrary word SVGs using the letters
+   4. Generate mail label SVGs from those words
+
+
+* Any Questions ?

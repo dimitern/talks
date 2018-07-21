@@ -1,17 +1,17 @@
-Reveal.addEventListener('examplepageshown', function() {
-    var $page = $('#slide-example-page .figure .org-svg:first');
+Reveal.addEventListener('example-input-shown', function() {
+    var $page = $('#slide-story1-example-input .figure .org-svg:first');
     $page.css({minWidth: '800px',
                positon: 'absolute',
-               top: '35%',
+               top: '33%',
                left: '25%',
                minHeight: '150px'}).addClass('svg-page');
 
-    var $detail = $('#slide-example-page .fragment:not(object)');
-    $detail.css({top: '40%', left: '40%',
+    var $detail = $('#slide-story1-example-input .fragment:not(object)');
+    $detail.css({top: '33%', left: '40%',
                  position: 'absolute'});
 
-    var $word = $('#slide-example-page .fragment:not(p)');
-    $word.css({top: '10%', left: 0,
+    var $word = $('#slide-story1-example-input .fragment:not(p)');
+    $word.css({top: '8%', left: 0,
                  minWidth: '500px',
                  position: 'absolute'});
 
@@ -24,27 +24,4 @@ Reveal.addEventListener('examplepageshown', function() {
             clearInterval(intv);
         }
     }, 100);
-});
-
-Reveal.addEventListener('exampleoutputshown', function() {
-    $('#slide-example-output object').each(function() {
-        $(this).css({
-            width: '600px',
-            height: '600px',
-            position: 'absolute',
-            top: '66%',
-            left: '35%'
-//            display: 'block'
-        });
-
-        $(this.contentDocument.documentElement).attr({
-            width: '100%',
-            height: '100%',
-            viewBox: '0 0 400 400'
-        });
-
-        $(this.contentDocument.documentElement).find('g:first').attr({
-            transform: 'scale(1.15, 1.5)'
-        });
-    });
 });
