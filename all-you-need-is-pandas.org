@@ -45,9 +45,9 @@
 
 Dimiter Naydenov
 
-=@dimitern=
-[[file:img/icon-twitter.png]]
-[[file:img/icon-github.png]]
+=@dimitern=\\
+[[file:img/icontwitter.png]]
+[[file:img/icongithub.png]]
 
 \\
 
@@ -429,9 +429,9 @@ file:img/example-word-debug-mode.svg\\
 :CUSTOM_ID: questions
 :END:
 
-=@dimitern=
-[[file:img/icon-twitter.png]]
-[[file:img/icon-github.png]]
+=@dimitern=\\
+[[file:img/icontwitter.png]]
+[[file:img/icongithub.png]]
 
 \\
 
