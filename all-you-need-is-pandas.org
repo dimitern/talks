@@ -22,14 +22,14 @@
 #+REVEAL_ROOT: reveal.js-3.6.0/
 #+REVEAL_EXTRA_CSS: extra.css
 #+REVEAL_EXTRA_JS: {src:'js/jquery-3.3.1.slim.min.js', async:false}, {src:'js/svg-example-anim.js', async:false}
-#+REVEAL_TRANS: cube
+#+REVEAL_TRANS: linear
 #+REVEAL_SPEED: default
 #+REVEAL_HLEVEL: 1
 #+REVEAL_PLUGINS: (classList highlight notes zoom)
 #+REVEAL_SLIDE_HEADER: <br/><br/>
 #+REVEAL_DEFAULT_FRAG_STYLE: roll-in
 #+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: slide
-#+REVEAL_DEFAULT_SLIDE_BACKGROUND_SIZE: 800px
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_SIZE: 900px
 #+REVEAL_DEFAULT_SLIDE_BACKGROUND_REPEAT: no-repeat
 
 
@@ -58,9 +58,11 @@ Dimiter Naydenov
 
 Hello everyone, and thanks for joining!
 
-My name is Dimiter Naydenov, and I'm excited to present to you my first ever EuroPython talk.
+My name is Dimiter Naydenov, and I'm excited to present to you my first ever
+EuroPython talk!
 
-I'm quite passionate about Pandas, and by the end of my talk I hope you would be as well!
+I'm quite passionate about Pandas, and I hope by the end of my talk you would be eager
+try it as well.
 
 Let me tell you a bit about myself first.
 
@@ -158,16 +160,19 @@ and contributors.
 First time I've heard about Pandas was at EuroPython 2012, and since then I keep hearing
 more and more about it from many people.
 
-It's easy to install, especially on Linux, but also on Windows or Mac OS.
+It's easy to install, especially on Linux, but also on Windows and Mac OS.
 
 Unlike NumPy, which I still find awkward and counter-intuitive to work with, Pandas is
-much nicer to use, more flexible, yet still as fast as NumPy.
+much nicer to use, more flexible, yet still just as fast as NumPy.
 
 Reading and writing data in multiple formats, like CSV, Excel, HDF5, to name a few is
 also an obvious advantage for me.
 
 And since I think visually most of the time, I liked how easy it is produce matplotlib plots
 from Pandas.
+
+So, I liked Pandas, but ultimately encountered some issues which made it
+difficult for me to use it.
 
 #+END_NOTES
 
@@ -184,7 +189,7 @@ from Pandas.
 
 #+BEGIN_NOTES
 
-So I tried Pandas, but ultimately could not find a good use for it at the time.
+There
 
 #+END_NOTES
 
@@ -228,33 +233,216 @@ So I tried Pandas, but ultimately could not find a good use for it at the time.
 \\
 \\
 
-/Excerpt of one SVG sample page for a user./
+/Excerpt of a user's SVG sample page./
 
-** Processing
+*** Example Output
+:PROPERTIES:
+:CUSTOM_ID: svg-example-output
+:END:
+[[file:img/svg-example-output.svg]]\\
+/Generated SVG mail label for another user./
+
+* Processing
 :PROPERTIES:
 :reveal_background: img/svg-processing.svg
 :CUSTOM_ID: svg-processing
 :END:
 
-*** Parsing
+** Parsing
 :PROPERTIES:
 :CUSTOM_ID: svg-parsing
 :END:
+/Problem:/ Extracting pen strokes from SVG XML
+
+#+ATTR_REVEAL: :frag roll-in none none :frag_idx 1
+/Solution:/ I found [[https://github.com/mathandy/svgpathtools][svgpathtools]] which provides:
+
+#+ATTR_REVEAL: :frag (t)
+  * Classes: =Path= (base), =Line=, =CubicBezier=, =QuadraticBezier=
+  * API for path intersections, bounding boxes, transformations
+  * Reading and writing SVG lists paths from/to SVG files
+
 #+ATTR_REVEAL: :frag t
+#+BEGIN_SRC python
+import svgpathtools as spt
 
-Problem #1:
+def parse_svg(filename):
+  paths, attrs = spt.svg2paths(filename)
+  # paths: list of Path instances
+  # attrs: list of dicts with XML attributes
+  return paths, attrs
+#+END_SRC
 
-|-------+------+------+------+------+------|
-| index | xmin | ymin | xmax | ymax | path |
-|-------+------+------+------+------+------|
-|     1 | x0   | y0   | x1   | y1   | p1   |
-|-------+------+------+------+------+------|
-
-** Example Output
+** DataFrame Creation
 :PROPERTIES:
-:CUSTOM_ID: story1-example-output
+:CUSTOM_ID: svg-dataframe
 :END:
-[[file:img/svg-example-output.svg]]\\
-/Generated SVG mail label for another user./
 
-* Any Questions ?
+#+BEGIN_SRC python
+import pandas as pd
+
+def gen_records(svg_paths):
+    for i, path in enumerate(svg_paths):
+        xmin, xmax, ymin, ymax = path.bbox()
+        yield dict(org_idx=i, xmin=xmin, ymin=ymin,
+                   xmax=xmax, ymax=ymax, path=path)
+
+def load_paths(filename):
+    paths, _ = parse_svg(filename)
+    return pd.DataFrame.from_records(gen_records(paths))
+#+END_SRC
+
+#+ATTR_REVEAL: :frag t
+|---------+--------+--------+--------+-------+--------|
+| org_idx | x_min  | y_min  | x_max  | y_max | path   |
+|---------+--------+--------+--------+-------+--------|
+| 0       | x_0    | y_0    | X_0    | Y_0   | p1     |
+| ...     |        |        |        |       |        |
+| n-1     | x_n-_1 | y_n-_1 | X_n-_1 | Y_n-1 | p_n-_1 |
+|---------+--------+--------+--------+-------+--------|
+
+** Letter Extraction
+:PROPERTIES:
+:CUSTOM_ID: svg-letters
+:END:
+
+/Problem:/ Compare each stroke with all nearby strokes and merge as letters
+
+#+ATTR_REVEAL: :frag t
+/Solution:/ DateFrame iteration and filtering (over multiple passes)
+
+#+ATTR_REVEAL: :frag t
+ #+BEGIN_SRC python
+def merge_letters(df, merged, unmerged):
+    merged = set([])
+    unmerged = set(df.loc['org_idx'].tolist())
+
+    df = merge_dots(df, merged, unmerged)
+    df = merge_overlapping(df, merged, unmerged)
+    df = merge_crossing_below(df, merged, unmerged)
+    df = merge_crossing_above(df, merged, unmerged)
+    df = merge_crossing_before(df, merged, unmerged)
+    df = merge_crossing_after(df, merged, unmerged)
+    return df, merged, unmerged
+ #+END_SRC
+
+*** Merging Fully Overlapping Paths
+:PROPERTIES:
+:CUSTOM_ID: svg-merge-overlapping
+:END:
+
+#+BEGIN_SRC python
+def merge_overlapping(df, merged, unmerged):
+    """Merges paths whose bboxes overlap completely."""
+
+    for path in df.itertuples():
+        candidates = df[(
+            (df.xmin < path.xmin) &
+            (df.xmax > path.xmax) &
+            (df.ymin < path.ymin) &
+            (df.ymax > path.ymax) &
+        )]
+
+        df = merge_candidates(df, path.Index, candidates.org_idx.values, merged, unmerged)
+
+    return update_data_frame(df)
+ #+END_SRC
+
+*** Updating After Each Pass
+:PROPERTIES:
+:CUSTOM_ID: svg-updating
+:END:
+
+ #+BEGIN_SRC python
+def update_data_frame(df):
+     """Calculates additional properties of each path."""
+
+     return (df.assign(
+         width=lambda df: df.xmax - df.xmin,
+         height=lambda df: df.ymax - df.ymin).assign(
+             half_width=lambda df: df.width / 2,
+             half_height=lambda df: df.height / 2,
+             area=lambda df: df.width * df.height,
+             aspect=lambda df: df.width / df.height)
+         .sort_values(['ymin', 'ymax', 'xmin', 'xmax']))
+  #+END_SRC
+
+** Classification
+:PROPERTIES:
+:CUSTOM_ID: svg-classification
+:END:
+
+#+ATTR_REVEAL: :frag (t)
+  * Manual process (deliberately)
+  * External tool (no Pandas :/)
+  * Loads merged unclassified letters
+  * Shows them one by one and allows adjustment
+  * Produces labeled letter / symbol SVG files
+
+** Word Building
+:PROPERTIES:
+:CUSTOM_ID: svg-words
+:END:
+
+#+ATTR_REVEAL: :frag (t)
+  * /Input:/ any word without spaces (e.g. =testing=)
+  * /Selection:/ for each letter, picks a labeled variant
+  * /Horizontal composition:/ merges selected variants with variable /kerning/
+  * /Vertical alignment:/ according to the running baseline of the word
+  * /Output:/ single word SVG file
+
+#+ATTR_REVEAL: :frag t :frag_idx 2
+file:img/example-word-debug-mode.svg\\
+/Example (showing letter bounding boxes and baseline)/
+
+** Labeling
+:PROPERTIES:
+:CUSTOM_ID: svg-labeling
+:END:
+
+#+ATTR_REVEAL: :frag (t)
+  * /Input:/ Excel file with mail addresses
+  * /Structure:/ one row per label, one column per line
+  * /Parsing:/ as simple as =pd.read_excel()=
+  * /Generation:/ builds words with variable spacing (for each column)
+  * /Alignment:/ with variable /leading/ (vertical line spacing)
+
+[[file:img/svg-example-output.svg]]
+
+* What I Learned: /All You Need is Pandas!/
+:PROPERTIES:
+:reveal_background: img/high-five-panda.jpg
+:reveal_background_position: 50% 85%
+:reveal_background_size: 500px
+:CUSTOM_ID: summary
+:END:
+
+#+ATTR_REVEAL: :frag (t)
+  * Pandas is great for /any/ table-based data processing
+  * Learn just a few features  (filtering, iteration) and use them
+  * Understand indexing and the power of =MultiIndex=
+  * Dealing with CSV or Excel I/O is trivial and fast
+  * Docs are great, but there is a lot to read initially
+  * Start with [[http://pandas.pydata.org/pandas-docs/stable/10min.html][10 Minutes to pandas]]
+
+* Questions ?
+:PROPERTIES:
+:CUSTOM_ID: questions
+:END:
+
+\\
+\\
+
+How to get in touch:
+
+[[https://twitter.com/dimitern/][@dimitern]]
+[[https://twitter.com/dimitern/][file:img/icon-twitter.svg]]
+[[https://github.com/dimitern/][file:img/icon-github.svg]]
+
+\\
+\\
+
+One more thing,\\
+/buy Wes McKinney's book "Python for Data Analysis" (seriously)/
+
+[[file:img/pandas-book.gif]]
