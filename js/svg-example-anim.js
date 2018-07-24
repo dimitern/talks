@@ -1,4 +1,4 @@
-Reveal.addEventListener('svg-example-input-shown', function() {
+ Reveal.addEventListener('svg-example-input-shown', function() {
     var $page = $('#slide-svg-example-input .figure .org-svg:first');
     $page.css({minWidth: '800px',
                positon: 'absolute',

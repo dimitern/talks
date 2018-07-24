@@ -45,9 +45,9 @@
 
 Dimiter Naydenov
 
-=@dimitern=\\
-[[https://twitter.com/dimitern/][file:img/icon-twitter.png]]
-[[https://github.com/dimitern/][file:img/icon-github.png]]
+=@dimitern=
+[[file:img/icon-twitter.png]]
+[[file:img/icon-github.png]]
 
 \\
 
@@ -429,14 +429,13 @@ file:img/example-word-debug-mode.svg\\
 :CUSTOM_ID: questions
 :END:
 
+=@dimitern=
+[[file:img/icon-twitter.png]]
+[[file:img/icon-github.png]]
+
 \\
 
 How to get in touch:
-
-=@dimitern=
-\\
-[[https://twitter.com/dimitern/][file:img/icon-twitter.png]]
-[[https://github.com/dimitern/][file:img/icon-github.png]]
 
 \\
 \\
