@@ -45,7 +45,7 @@
 
 Dimiter Naydenov
 
-[[https://twitter.com/dimitern/][@dimitern]]\\
+=@dimitern=\\
 [[https://twitter.com/dimitern/][file:img/icon-twitter.png]]
 [[https://github.com/dimitern/][file:img/icon-github.png]]
 
@@ -433,7 +433,7 @@ file:img/example-word-debug-mode.svg\\
 
 How to get in touch:
 
-[[https://twitter.com/dimitern/][@dimitern]]
+=@dimitern=
 \\
 [[https://twitter.com/dimitern/][file:img/icon-twitter.png]]
 [[https://github.com/dimitern/][file:img/icon-github.png]]
