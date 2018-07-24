@@ -21,7 +21,7 @@
 #+REVEAL_THEME: sky
 #+REVEAL_ROOT: reveal.js-3.6.0/
 #+REVEAL_EXTRA_CSS: extra.css
-#+REVEAL_EXTRA_JS: {src:'js/jquery-3.3.1.slim.min.js', async:false}, {src:'js/story1-anim.js', async:false}
+#+REVEAL_EXTRA_JS: {src:'js/jquery-3.3.1.slim.min.js', async:false}, {src:'js/svg-example-anim.js', async:false}
 #+REVEAL_TRANS: cube
 #+REVEAL_SPEED: default
 #+REVEAL_HLEVEL: 1
@@ -52,40 +52,43 @@ Dimiter Naydenov
 \\
 \\
 
-[[./img/europython-2018-logo-white-bg-small.png]]
+[[file:img/europython-2018-logo-white-bg-small.png]]
 
 #+BEGIN_NOTES
 
 Hello everyone, and thanks for joining!
 
-My name is Dimiter Naydenov, and today I'm going to talk about my experiences with
-the awesome Pandas library, why I love it, and how surprisingly practical I found it to be.
+My name is Dimiter Naydenov, and I'm excited to present to you my first ever EuroPython talk.
 
-Let me start by telling you a bit about myself first.
+I'm quite passionate about Pandas, and by the end of my talk I hope you would be as well!
+
+Let me tell you a bit about myself first.
 
 #+END_NOTES
 
-* About me
+** About me
 :PROPERTIES:
-:CUSTOM_ID: about-me
+:CUSTOM_ID: about
 :END:
 
 =from Bulgaria.Sofia import Dimiter.Naydenov=
 
- * /loves:/ Python, Emacs, Ubuntu, Scuba Diving, Sci-Fi
+#+ATTR_REVEAL: :frag (t)
+  * /tags:/ =Python=, =Emacs=, =Go=, =Ubuntu=, /Diving/, /Sci-Fi/
+  * /company:/ =develated=
 
-#+BEGIN_NOTES
+ #+BEGIN_NOTES
 
-I've been a developer for over 20 years, starting with Basic, going through Pascal, C++, C#,
-even PHP for 3 years, before I discovering Python through Django.
+I've been a developer for over 20 years, starting with Basic and Pascal, then C++, C#,
+even PHP for 3 years, and then I discovered Python through Django.
 
-Python is my favourite language, and I've used it for all kinds of projects, not just for web,
-but also desktop apps, scripts, and backend services.
+Since then, Python became my favourite language, and I've used it for all kinds of projects,
+including web, desktop, and mobile applications, scripting and server-side software.
 
-For 4 years I worked on a cloud deployment suite ported from Python to Go, then after that I decided
-to go on my own, started a small company, and got full-time into freelancing.
+For 4 years I worked on porting a cloud deployment suite from Python to Go, and then I went
+full-time into freelancing with Python, founding my own small company - develated.
 
-#+END_NOTES
+ #+END_NOTES
 
 * Pandas?
 :PROPERTIES:
@@ -93,7 +96,7 @@ to go on my own, started a small company, and got full-time into freelancing.
 :END:
 
 #+ATTR_REVEAL: :frag t
-[[./img/many-a-pandas.jpeg]]
+[[file:img/many-a-pandas.jpeg]]
 
 #+BEGIN_NOTES
 
@@ -108,33 +111,43 @@ So what about Pandas?
 :CUSTOM_ID: import-pandas
 :END:
 
- [[./img/pandas_logo.png]]
+[[file:img/pandas_logo.png]]
 
+#+ATTR_REVEAL: :frag (t)
   * Open source (BSD-licensed) Python library
-  * Easy-to-use, high-performance data structures
+  * Created by Wes McKinney in 2008
+  * High-performance, easy-to-use data structures
   * Great API for data analysis, built on top of [[http://www.numpy.org/][NumPy]]
   * Well documented: [[http://pandas.pydata.org/pandas-docs/stable/][pandas.pydata.org/pandas-doc/stable/]]
 
  #+BEGIN_NOTES
 
- How many of you have never used Pandas or even heard about it?
+How many of you know about Pandas?
 
- ----if-more-than-a-few------------------------------------------------------------
- OK, so here is a quick overview.
+OK, great!
 
- Pandas is an open source Python library for data analysis, built on top of NumPy,
- created by Wes McKinney in 2008.
+How many of you use Pandas regularly?
 
- It is very well documented, actively supported, and has a large community of users
- and contributors.
+Awesome!
 
- ----if-just-a-few-----------------------------------------------------------------
- Wow, not a lot of people, that's great! No need for an introduction then.
+OK, for those of you not familiar with it, here is a quick overview.
+
+Pandas is an open source Python library for data analysis, created by Wes McKinney in 2008.
+
+It provides high-performance, easy-to-use data structures, and a great API for data analysis,
+built on top of NumPy.
+
+It is very well documented, actively supported, and has a large community of users
+and contributors.
 
  #+END_NOTES
 
-* Pandas, Best of
-#+ATTR_REVEAL: :frag (roll-in)
+* Pandas: Personal Favourites
+:PROPERTIES:
+:CUSTOM_ID: pandas-favourites
+:END:
+
+#+ATTR_REVEAL: :frag (t)
  * Easy to install, very few requirements
  * Fast as NumPy, yet more flexible and nicer to use
  * Reads/writes data in the most common formats
@@ -144,6 +157,8 @@ So what about Pandas?
 
 First time I've heard about Pandas was at EuroPython 2012, and since then I keep hearing
 more and more about it from many people.
+
+It's easy to install, especially on Linux, but also on Windows or Mac OS.
 
 Unlike NumPy, which I still find awkward and counter-intuitive to work with, Pandas is
 much nicer to use, more flexible, yet still as fast as NumPy.
@@ -156,12 +171,16 @@ from Pandas.
 
 #+END_NOTES
 
-* Pandas, Sad
-#+ATTR_REVEAL: :frag (roll-in)
- * Good documentation, but a few good hands-on guides
- * Cannot "just use it", need to read a lot first
- * Indexing is confusing, even without MultiIndex
- * Can I just get my integers back, please?
+* Pandas: Personal Pain Points
+:PROPERTIES:
+:CUSTOM_ID: pandas-pain-points
+:END:
+
+#+ATTR_REVEAL: :frag (t)
+ * Good documentation, but not a lot of tutorials
+ * Confusingly many ways to do the same thing
+ * Arcane indexing, even without MultiIndex
+ * Sane defaults, but can be "too smart" in some cases
 
 #+BEGIN_NOTES
 
@@ -169,16 +188,16 @@ So I tried Pandas, but ultimately could not find a good use for it at the time.
 
 #+END_NOTES
 
-* _Story 1:_ Mail Labels Generator
+* SVG Mail Labels Generator
 :PROPERTIES:
-:CUSTOM_ID: story1-svg-mail-labels-generator
+:CUSTOM_ID: svg-mail-labels-generator
 :END:
 
-/Goal:/ Send personalized mail, labeled  in sender's handwriting.
+/Goal:/ Send personalized mail, labeled in sender's handwriting.
 
 ** Requirements
 :PROPERTIES:
-:CUSTOM_ID: story1-requirements
+:CUSTOM_ID: svg-requirements
 :END:
  #+ATTR_REVEAL: :frag (t)
    1. Acquire samples of users' handwriting as SVG files
@@ -188,38 +207,38 @@ So I tried Pandas, but ultimately could not find a good use for it at the time.
 
 ** Acquiring Handwriting Samples
 :PROPERTIES:
-:reveal_background: img/story1-acquire.svg
-:CUSTOM_ID: story1-acquire-handwriting
+:reveal_background: img/svg-acquire.svg
+:CUSTOM_ID: svg-acquire-handwriting
 :END:
 
 *** Example Input
 :PROPERTIES:
-:reveal_background: img/story1-example-page-bg.svg
+:reveal_background: img/svg-example-page-bg.svg
 :reveal_background_position: 50% 40%
-:reveal_data_state: example-input-shown
-:CUSTOM_ID: story1-example-input
+:reveal_data_state: svg-example-input-shown
+:CUSTOM_ID: svg-example-input
 :END:
 
- [[./img/example-page.svg]]
+[[file:img/example-page.svg]]
 
- #+ATTR_REVEAL: :frag fade-down :frag_idx 1
- [[./img/example-detail.svg]]
- [[./img/story1-example-detail-bg.svg]]
+#+ATTR_REVEAL: :frag fade-down :frag_idx 1
+[[file:img/example-detail.svg]]
+[[file:img/svg-example-detail-bg.svg]]
 
- \\
- \\
+\\
+\\
 
- /Excerpt of one SVG sample page for a user./
+/Excerpt of one SVG sample page for a user./
 
 ** Processing
 :PROPERTIES:
-:reveal_background: img/story1-processing.svg
-:CUSTOM_ID: story1-processing
+:reveal_background: img/svg-processing.svg
+:CUSTOM_ID: svg-processing
 :END:
 
 *** Parsing
 :PROPERTIES:
-:CUSTOM_ID: story1-parsing
+:CUSTOM_ID: svg-parsing
 :END:
 #+ATTR_REVEAL: :frag t
 
@@ -235,37 +254,7 @@ Problem #1:
 :PROPERTIES:
 :CUSTOM_ID: story1-example-output
 :END:
-[[./img/story1-example-label.svg]]\\
+[[file:img/svg-example-output.svg]]\\
 /Generated SVG mail label for another user./
-
-* _Story 2:_ Norwegian Business Registry
-
-/Goal:/ Fast daily import of millions of CSV rows into PostgreSQL.
-
-** Input Data
-
- * Open Data, free to use via an API, or as a complete CSV download
- * Contains all companies registered in Norway (over 1 million)
- * Download link: [[http://data.brreg.no/enhetsregisteret/download/enheter][data.brreg.no]]
- * CSV file with 40 columns is about 345MB when unzipped
- * 40 columns in total, but only 5 are need for the import
-
-** Environment
-
- * Django back-office web application using PostgreSQL and Celery.
- * Deployed on a small AWS VM instance (2GB RAM, 8GB HDD).
- * Used to validate and analyze e-invoice API traffic.
- * Reconciles e-invoice coming mostly from Norway, but also across EU
- * Needs fast lookups by Organization/VAT number for known companies
-
-** Import Procedure
-
- #+ATTR_REVEAL: :frag (t)
-   1. Download and unzip the CSV file
-   2. Load all 1.1M+ rows  only 6 out of the 65 column, 1.1M+ Load
-   2. Extract 6 of the 65 columns in the CSV, Only a few of Filter out most of the datath
-   3. Compose arbitrary word SVGs using the letters
-   4. Generate mail label SVGs from those words
-
 
 * Any Questions ?

@@ -32,7 +32,7 @@
 <section>
 <section id="slide-title" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="title"><a id="org2b4f809"></a>All You Need is Pandas</h2>
+<h2 id="title"><a id="org5470fc1"></a>All You Need is Pandas</h2>
 <p>
 <i>Unexpected Success Stories</i>
 </p>
@@ -61,7 +61,7 @@ Sorry, your browser does not support SVG.</object></a>
 
 
 <div class="figure">
-<p><img src="./img/europython-2018-logo-white-bg-small.png" alt="europython-2018-logo-white-bg-small.png" />
+<p><img src="img/europython-2018-logo-white-bg-small.png" alt="europython-2018-logo-white-bg-small.png" />
 </p>
 </div>
 
@@ -75,28 +75,30 @@ Hello everyone, and thanks for joining!
 </p>
 
 <p>
-My name is Dimiter Naydenov, and today I'm going to talk about my experiences with
-the awesome Pandas library, why I love it, and how surprisingly practical I found it to be.
+My name is Dimiter Naydenov, and I'm excited to present to you my first ever EuroPython talk.
 </p>
 
 <p>
-Let me start by telling you a bit about myself first.
+I'm quite passionate about Pandas, and by the end of my talk I hope you would be as well!
+</p>
+
+<p>
+Let me tell you a bit about myself first.
 </p>
 
 </aside>
 
 </section>
-</section>
-<section>
-<section id="slide-about-me" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-about" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="about-me"><a id="orga9e1118"></a>About me</h2>
+<h3 id="about"><a id="org5eeb9fb"></a>About me</h3>
 <p>
 <code>from Bulgaria.Sofia import Dimiter.Naydenov</code>
 </p>
 
 <ul>
-<li><i>loves:</i> Python, Emacs, Ubuntu, Scuba Diving, Sci-Fi</li>
+<li class="fragment roll-in"><i>tags:</i> <code>Python</code>, <code>Emacs</code>, <code>Go</code>, <code>Ubuntu</code>, <i>Diving</i>, <i>Sci-Fi</i></li>
+<li class="fragment roll-in"><i>company:</i> <code>develated</code></li>
 
 </ul>
 
@@ -106,18 +108,18 @@ Let me start by telling you a bit about myself first.
 </p>
 
 <p>
-I've been a developer for over 20 years, starting with Basic, going through Pascal, C++, C#,
-even PHP for 3 years, before I discovering Python through Django.
+I've been a developer for over 20 years, starting with Basic and Pascal, then C++, C#,
+even PHP for 3 years, and then I discovered Python through Django.
 </p>
 
 <p>
-Python is my favourite language, and I've used it for all kinds of projects, not just for web,
-but also desktop apps, scripts, and backend services.
+Since then, Python became my favourite language, and I've used it for all kinds of projects,
+including web, desktop, and mobile applications, scripting and server-side software.
 </p>
 
 <p>
-For 4 years I worked on a cloud deployment suite ported from Python to Go, then after that I decided
-to go on my own, started a small company, and got full-time into freelancing.
+For 4 years I worked on porting a cloud deployment suite from Python to Go, and then I went
+full-time into freelancing with Python, founding my own small company - develated.
 </p>
 
 </aside>
@@ -127,10 +129,10 @@ to go on my own, started a small company, and got full-time into freelancing.
 <section>
 <section id="slide-pandas" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="pandas"><a id="orgd7db12d"></a>Pandas?</h2>
+<h2 id="pandas"><a id="org567e00b"></a>Pandas?</h2>
 
 <div class="figure">
-<p><img src="./img/many-a-pandas.jpeg" alt="many-a-pandas.jpeg" class="fragment roll-in" />
+<p><img src="img/many-a-pandas.jpeg" alt="many-a-pandas.jpeg" class="fragment roll-in" />
 </p>
 </div>
 
@@ -152,18 +154,19 @@ So what about Pandas?
 </section>
 <section id="slide-import-pandas" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="import-pandas"><a id="org2df53b9"></a><code>import pandas as pd</code></h3>
+<h3 id="import-pandas"><a id="org58b42af"></a><code>import pandas as pd</code></h3>
 
 <div class="figure">
-<p><img src="./img/pandas_logo.png" alt="pandas_logo.png" />
+<p><img src="img/pandas_logo.png" alt="pandas_logo.png" />
 </p>
 </div>
 
 <ul>
-<li>Open source (BSD-licensed) Python library</li>
-<li>Easy-to-use, high-performance data structures</li>
-<li>Great API for data analysis, built on top of <a href="http://www.numpy.org/">NumPy</a></li>
-<li>Well documented: <a href="http://pandas.pydata.org/pandas-docs/stable/">pandas.pydata.org/pandas-doc/stable/</a></li>
+<li class="fragment roll-in">Open source (BSD-licensed) Python library</li>
+<li class="fragment roll-in">Created by Wes McKinney in 2008</li>
+<li class="fragment roll-in">High-performance, easy-to-use data structures</li>
+<li class="fragment roll-in">Great API for data analysis, built on top of <a href="http://www.numpy.org/">NumPy</a></li>
+<li class="fragment roll-in">Well documented: <a href="http://pandas.pydata.org/pandas-docs/stable/">pandas.pydata.org/pandas-doc/stable/</a></li>
 
 </ul>
 
@@ -173,17 +176,32 @@ So what about Pandas?
 </p>
 
 <p>
-How many of you have never used Pandas or even heard about it?
+How many of you know about Pandas?
 </p>
 
 <p>
--&#x2014;if-more-than-a-few-------------------------------------------------------&#x2013;&#x2014;
-OK, so here is a quick overview.
+OK, great!
 </p>
 
 <p>
-Pandas is an open source Python library for data analysis, built on top of NumPy,
-created by Wes McKinney in 2008.
+How many of you use Pandas regularly?
+</p>
+
+<p>
+Awesome!
+</p>
+
+<p>
+OK, for those of you not familiar with it, here is a quick overview.
+</p>
+
+<p>
+Pandas is an open source Python library for data analysis, created by Wes McKinney in 2008.
+</p>
+
+<p>
+It provides high-performance, easy-to-use data structures, and a great API for data analysis,
+built on top of NumPy.
 </p>
 
 <p>
@@ -191,19 +209,14 @@ It is very well documented, actively supported, and has a large community of use
 and contributors.
 </p>
 
-<p>
--&#x2014;if-just-a-few------------------------------------------------------------&#x2013;&#x2014;
-Wow, not a lot of people, that's great! No need for an introduction then.
-</p>
-
 </aside>
 
 </section>
 </section>
 <section>
-<section id="slide-orgea31f6e" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-pandas-favourites" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="orgea31f6e">Pandas, Best of</h2>
+<h2 id="pandas-favourites"><a id="org97e21cb"></a>Pandas: Personal Favourites</h2>
 <ul>
 <li class="fragment roll-in">Easy to install, very few requirements</li>
 <li class="fragment roll-in">Fast as NumPy, yet more flexible and nicer to use</li>
@@ -220,6 +233,10 @@ Wow, not a lot of people, that's great! No need for an introduction then.
 <p>
 First time I've heard about Pandas was at EuroPython 2012, and since then I keep hearing
 more and more about it from many people.
+</p>
+
+<p>
+It's easy to install, especially on Linux, but also on Windows or Mac OS.
 </p>
 
 <p>
@@ -242,14 +259,14 @@ from Pandas.
 </section>
 </section>
 <section>
-<section id="slide-org029c633" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-pandas-pain-points" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="org029c633">Pandas, Sad</h2>
+<h2 id="pandas-pain-points"><a id="org9e76dc7"></a>Pandas: Personal Pain Points</h2>
 <ul>
-<li class="fragment roll-in">Good documentation, but a few good hands-on guides</li>
-<li class="fragment roll-in">Cannot "just use it", need to read a lot first</li>
-<li class="fragment roll-in">Indexing is confusing, even without MultiIndex</li>
-<li class="fragment roll-in">Can I just get my integers back, please?</li>
+<li class="fragment roll-in">Good documentation, but not a lot of tutorials</li>
+<li class="fragment roll-in">Confusingly many ways to do the same thing</li>
+<li class="fragment roll-in">Arcane indexing, even without MultiIndex</li>
+<li class="fragment roll-in">Sane defaults, but can be "too smart" in some cases</li>
 
 </ul>
 
@@ -267,17 +284,17 @@ So I tried Pandas, but ultimately could not find a good use for it at the time.
 </section>
 </section>
 <section>
-<section id="slide-story1-svg-mail-labels-generator" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-svg-mail-labels-generator" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="story1-svg-mail-labels-generator"><a id="org9c29eb0"></a><span class="underline">Story 1:</span> Mail Labels Generator</h2>
+<h2 id="svg-mail-labels-generator"><a id="org6086d22"></a>SVG Mail Labels Generator</h2>
 <p>
-<i>Goal:</i> Send personalized mail, labeled  in sender's handwriting.
+<i>Goal:</i> Send personalized mail, labeled in sender's handwriting.
 </p>
 
 </section>
-<section id="slide-story1-requirements" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-svg-requirements" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="story1-requirements"><a id="orgbddd3a2"></a>Requirements</h3>
+<h3 id="svg-requirements"><a id="orgf6d52c3"></a>Requirements</h3>
 <ol>
 <li class="fragment roll-in">Acquire samples of users' handwriting as SVG files</li>
 <li class="fragment roll-in">Extract individual letter/symbol SVGs from each sample page</li>
@@ -287,24 +304,24 @@ So I tried Pandas, but ultimately could not find a good use for it at the time.
 </ol>
 
 </section>
-<section id="slide-story1-acquire-handwriting" data-background="img/story1-acquire.svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-svg-acquire-handwriting" data-background="img/svg-acquire.svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="story1-acquire-handwriting"><a id="org84125e2"></a>Acquiring Handwriting Samples</h3>
+<h3 id="svg-acquire-handwriting"><a id="org31a7a38"></a>Acquiring Handwriting Samples</h3>
 </section>
-<section id="slide-story1-example-input" data-state="example-input-shown" data-background="img/story1-example-page-bg.svg" data-background-size="800px" data-background-position="50% 40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-svg-example-input" data-state="svg-example-input-shown" data-background="img/svg-example-page-bg.svg" data-background-size="800px" data-background-position="50% 40%" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h4 id="story1-example-input"><a id="orga37a2cc"></a>Example Input</h4>
+<h4 id="svg-example-input"><a id="org8978587"></a>Example Input</h4>
 
 <div class="figure">
-<p><object type="image/svg+xml" data="./img/example-page.svg" class="org-svg">
+<p><object type="image/svg+xml" data="img/example-page.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 </div>
 
 <p data-fragment-index="1" class="fragment fade-down">
-<object type="image/svg+xml" data="./img/example-detail.svg" class="fragment fade-down" data-fragment-index="1">
+<object type="image/svg+xml" data="img/example-detail.svg" class="fragment fade-down" data-fragment-index="1">
 Sorry, your browser does not support SVG.</object>
-<object type="image/svg+xml" data="./img/story1-example-detail-bg.svg" class="org-svg">
+<object type="image/svg+xml" data="img/svg-example-detail-bg.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object>
 </p>
 
@@ -318,13 +335,13 @@ Sorry, your browser does not support SVG.</object>
 </p>
 
 </section>
-<section id="slide-story1-processing" data-background="img/story1-processing.svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-svg-processing" data-background="img/svg-processing.svg" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="story1-processing"><a id="orgcfdfcbd"></a>Processing</h3>
+<h3 id="svg-processing"><a id="org6738977"></a>Processing</h3>
 </section>
-<section id="slide-story1-parsing" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-svg-parsing" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h4 id="story1-parsing"><a id="org1129dd5"></a>Parsing</h4>
+<h4 id="svg-parsing"><a id="org7d9db62"></a>Parsing</h4>
 <p>
 Problem #1:
 </p>
@@ -370,9 +387,9 @@ Problem #1:
 </section>
 <section id="slide-story1-example-output" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h3 id="story1-example-output"><a id="orgf966765"></a>Example Output</h3>
+<h3 id="story1-example-output"><a id="org3232e78"></a>Example Output</h3>
 <p>
-<object type="image/svg+xml" data="./img/story1-example-label.svg" class="org-svg">
+<object type="image/svg+xml" data="img/svg-example-output.svg" class="org-svg">
 Sorry, your browser does not support SVG.</object><br />
 <i>Generated SVG mail label for another user.</i>
 </p>
@@ -380,59 +397,9 @@ Sorry, your browser does not support SVG.</object><br />
 </section>
 </section>
 <section>
-<section id="slide-org585bf8e" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
+<section id="slide-orga5dda02" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
 <div class="slide-header"><br/><br/></div>
-<h2 id="org585bf8e"><span class="underline">Story 2:</span> Norwegian Business Registry</h2>
-<p>
-<i>Goal:</i> Fast daily import of millions of CSV rows into PostgreSQL.
-</p>
-
-</section>
-<section id="slide-orgaf5d67c" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
-<div class="slide-header"><br/><br/></div>
-<h3 id="orgaf5d67c">Input Data</h3>
-<ul>
-<li>Open Data, free to use via an API, or as a complete CSV download</li>
-<li>Contains all companies registered in Norway (over 1 million)</li>
-<li>Download link: <a href="http://data.brreg.no/enhetsregisteret/download/enheter">data.brreg.no</a></li>
-<li>CSV file with 40 columns is about 345MB when unzipped</li>
-<li>40 columns in total, but only 5 are need for the import</li>
-
-</ul>
-
-</section>
-<section id="slide-org1e8e043" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
-<div class="slide-header"><br/><br/></div>
-<h3 id="org1e8e043">Environment</h3>
-<ul>
-<li>Django back-office web application using PostgreSQL and Celery.</li>
-<li>Deployed on a small AWS VM instance (2GB RAM, 8GB HDD).</li>
-<li>Used to validate and analyze e-invoice API traffic.</li>
-<li>Reconciles e-invoice coming mostly from Norway, but also across EU</li>
-<li>Needs fast lookups by Organization/VAT number for known companies</li>
-
-</ul>
-
-</section>
-<section id="slide-org9aa2c77" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
-<div class="slide-header"><br/><br/></div>
-<h3 id="org9aa2c77">Import Procedure</h3>
-<ol>
-<li class="fragment roll-in">Download and unzip the CSV file</li>
-<li class="fragment roll-in">Load all 1.1M+ rows  only 6 out of the 65 column, 1.1M+ Load</li>
-<li class="fragment roll-in">Extract 6 of the 65 columns in the CSV, Only a few of Filter out most of the datath</li>
-<li class="fragment roll-in">Compose arbitrary word SVGs using the letters</li>
-<li class="fragment roll-in">Generate mail label SVGs from those words</li>
-
-</ol>
-
-
-</section>
-</section>
-<section>
-<section id="slide-org86f363d" data-background-size="800px" data-background-repeat="no-repeat" data-background-transition="slide">
-<div class="slide-header"><br/><br/></div>
-<h2 id="org86f363d">Any Questions ?</h2>
+<h2 id="orga5dda02">Any Questions ?</h2>
 </section>
 </section>
 </div>
@@ -470,7 +437,7 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
-{src:'js/jquery-3.3.1.slim.min.js', async:false}, {src:'js/story1-anim.js', async:false},
+{src:'js/jquery-3.3.1.slim.min.js', async:false}, {src:'js/svg-example-anim.js', async:false},
  { src: 'reveal.js-3.6.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
  { src: 'reveal.js-3.6.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
  { src: 'reveal.js-3.6.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
