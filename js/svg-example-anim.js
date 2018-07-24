@@ -1,3 +1,5 @@
+$('a object').css({display: 'inline !important', visibility: 'visible !important', opacity: '1 !important');
+
 Reveal.addEventListener('svg-example-input-shown', function() {
     var $page = $('#slide-svg-example-input .figure .org-svg:first');
     $page.css({minWidth: '800px',
