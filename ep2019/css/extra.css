@@ -1,0 +1,46 @@
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  text-transform: none;
+}
+
+a[href] img {
+  border: none;
+  vertical-align: middle;
+}
+
+a[href]:hover {
+  text-decoration: underline;
+}
+
+img {
+  border: none !important;
+  vertical-align: middle;
+}
+
+#slide-camelot-and-excalibur img {
+  max-width: 10%;
+}
+
+a object, a object * {
+  display: inline  !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.reveal blockquote {
+  text-align: left;
+  font-size: smaller;
+  background-color: #fffb;
+  padding: 1rem 3rem;
+  border-left: 0.75rem groove #000a;
+}
+
+.right {
+  float: right;
+  object-fit: cover;
+  object-position: 0% 0%;
+  left: 25% !important;
+}
+
+code.bash {
+  font-size: 150%;
+}

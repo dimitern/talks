@@ -1,0 +1,43 @@
+version: '3'
+
+volumes:
+  ep2019_data: {}
+
+services:
+
+  memcached:
+    image: memcached:latest
+    container_name: ep2019-memcached
+    restart: always
+    ports:
+      - 11212:11211
+    networks:
+      - ep2019_network
+
+  jupyter:
+    image: jupyter/scipy-notebook:latest
+    container_name: ep2019-jupyter
+    restart: always
+    volumes:
+      - ep2019_data:/home/jovyan/work
+    ports:
+       - 8888:8888
+    networks:
+      - ep2019_network
+
+  excalibur:
+    image: dimitern/excalibur-dev:latest
+    container_name: ep2019-excalibur
+    environment:
+      - EXCALIBUR_HOME=/home/excalibur
+    volumes:
+      - ep2019_data:/home/excalibur/data
+    ports:
+      - 5000:5000
+    networks:
+      - ep2019_network
+
+networks:
+  ep2019_network:
+    ipam:
+      driver: default

@@ -1,0 +1,13 @@
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  text-transform: none;
+}
+
+a object, a object * {
+  display: inline  !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+img {
+  border: none !important;
+}

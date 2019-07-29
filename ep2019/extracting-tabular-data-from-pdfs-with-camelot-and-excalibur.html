@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Extracting Tabular Data from PDFs using Camelot and Excalibur</title>
+<meta name="author" content="(Dimiter Naydenov)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./common/reveal.js-3.8.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="./common/reveal.js-3.8.0/css/theme/beige.css" id="theme"/>
+
+<link rel="stylesheet" href="./css/extra.css"/>
+<link rel="stylesheet" href="./common/reveal.js-3.8.0/lib/css/zenburn.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './common/reveal.js-3.8.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+
+<section>
+<section id="slide-title" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h2 id="title">Extracting Tables from PDFs</h2>
+<p>
+<i>Using <a href="https://github.com/socialcopsdev/camelot">Camelot</a> and <a href="https://github.com/camelot-dev/excalibur">Excalibur</a> to automate PDF table extraction and export</i>
+</p>
+
+<p>
+<br />
+<br />
+</p>
+
+<p>
+Dimiter Naydenov
+</p>
+
+<p>
+<code>@dimitern</code> <a href="https://twitter.com/dimitern"><img src="img/icontwitter.png" alt="icontwitter.png" /></a> <a href="https://github.com/dimitern"><img src="img/icongithub.png" alt="icongithub.png" /></a>
+</p>
+
+<p>
+<br />
+<br />
+</p>
+
+
+<div class="figure">
+<p><a href="https://ep2019.europython.eu/"><img src="img/europython-2019-logo-trans-bg-smaller.png" alt="europython-2019-logo-trans-bg-smaller.png" /></a>
+</p>
+</div>
+
+<aside class="notes">
+<p>
+Hello everyone, and thanks for joining!
+</p>
+
+<p>
+My name is Dimiter Naydenov, and I'm a freelance Python developer from Sofia,
+Bulgaria.
+</p>
+
+<p>
+Today I'm going to talk to you about extracting tabular data from Portable
+Document Format files, the problems I've faced, and the solutions I found.
+</p>
+
+<p>
+Let's start with a quick overview of what this talk will be about.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-overview" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h2 id="overview">Overview</h2>
+<ul>
+<li class="fragment roll-in">PDF: brief history, structure, representing tables</li>
+<li class="fragment roll-in">Camelot &amp; Excalibur: overview, main features, installation</li>
+<li class="fragment roll-in">Demo: quick tour of Camelot, visual debugging, and plotting</li>
+<li class="fragment roll-in">Future improvements, Q&amp;A</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+First, we're have a brief look at the history of the Portable Document Format,
+and its internal structure, specifically the way tabular data is represented,
+and why extracting such data is problematic for PDFs. On to Camelot and
+Excalibur, the main focus of this talk, we'll see how to install both, and
+list the main features which make tabular data extraction easy and under your
+control. Then it's time for a demonstration, where I'll try to get you as
+excited about Camelot as I am, hopefully. At the end we'll look into the
+possible future improvements, and I'll address any questions you may have,
+time permitting. So let's get started with the Portable Document Format.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-portable-document-format" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h2 id="portable-document-format">Portable Document Format</h2>
+<p>
+<i>almost 30 years ago&#x2026;</i>
+</p>
+
+<blockquote nil>
+<p>
+This document describes the base technology and ideas behind the project
+named "Camelot".<br />
+[&#x2026;] a universal way to communicate documents across a wide variety of
+machine configurations, operating systems and communication networks. [&#x2026;]
+viewable on any display [&#x2026;] printable on any modern printers.
+<br />
+<br />
+&#x2014;The Camelot Project, John Warnock
+</p>
+</blockquote>
+
+<p>
+<a href="https://theblog.adobe.com/evolution-digital-document-celebrating-adobe-acrobats-25th-anniversary/">source:</a>
+Evolution of the Digital Document:<br />
+Celebrating Adobe Acrobat’s 25th Anniversary
+</p>
+
+<aside class="notes">
+<p>
+Almost 30 years ago, if not more, John Warnock, one of the founders of Adobe
+Systems started what was unofficially called "The Camelot Project", and
+described its goals in a manifesto sort of document. Here you can see a few
+excerpts from that document. The goal was to create a universal document
+format, that was easy to exchange between different machines, OSes, and
+environments. Each PDF can contain rich content, hyperlinks, images, text, and
+can be printed on a variety of printers, yet still look the same way as its
+author intended. The quote you see is from an article called "Evolution o the
+Digital Document: Celebrating Adobe Acrobat's 25th Anniversary."
+</p>
+
+</aside>
+
+</section>
+<section id="slide-pdf-at-a-glance" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h3 id="pdf-at-a-glance">PDF: At a Glance</h3>
+<ul>
+<li class="fragment roll-in">Created in the early 1990s by Adobe Systems</li>
+<li class="fragment roll-in">Predates the World Wide Web and HTML</li>
+<li class="fragment roll-in">Proprietary format initially, released as open standard as of v1.7</li>
+<li class="fragment roll-in">Based on a subset of Adobe PostScript</li>
+<li class="fragment roll-in">Self-contained: embedded fonts, attachments, annotations, rich media, etc.</li>
+<li class="fragment roll-in">13 versions released; an ISO standard since 2008 (PDF 1.7).</li>
+<li class="fragment roll-in">Structured as a hierarchy of objects (words, paragraphs, fonts, etc.)</li>
+
+</ul>
+
+
+<div class="figure">
+<p><img src="img/page-by-nc-sa.png" alt="page-by-nc-sa.png" class="fragment roll-in" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+So here are some quick facts about PDF. It was created in the early 1990s by Adobe
+Systems, and it actually predates the World Wide Web and the HTML format by a few
+years. When it was created, it was a proprietary format, but later in 2008 Adobe
+decided to publish it as an open standard by the International Standards Organization.
+PDF is based on a subset of the much larger Adobe PostScript - a page description
+language, but unlike PS, PDF is designed to be self-contained, utilizing technologies
+like fonts embedding, attachments, annotations, rich media, hyperlinks, as well as text.
+Since its conception more than 13 versions of the PDF standard  were defined. Internally,
+PDFs are structured as a hierarchy of objects (words, paragraphs, fonts, pages, etc).
+Here's a high-level diagram of the structure, and the next slide shows a bit
+more detail.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-pdf-structure" data-background="./img/simplefile-by-nc-sa.png" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h3 id="pdf-structure">PDF: Structure</h3>
+<p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+</p>
+
+<p>
+source: <a href="https://gendignoux.com/blog/2016/10/04/pdf-basics.html">Introduction
+to PDF syntax: by Guillaume Endignoux</a>
+</p>
+
+<aside class="notes">
+<p>
+There is a header, and trailer sections, along with catalogs of objects,
+starting from each page and its child objects, text boxes, paragraphs, fonts,
+cross references. And&#x2026; no tables whatsoever. There's no concept of a table
+in PDF, what looks like a table is actually a bunch of absolutely positioned
+text boxes along with the fonts they should be using. Here's a quick video I
+captured of me trying to select individual rows, columns, or cells in a PDF
+table.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-text-selection-and-pdf-tables" data-state="alert" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h3 id="text-selection-and-pdf-tables">Text Selection &amp; PDF "Tables"</h3>
+<video class="right fragment" mute loop data-autoplay src="img/text-selection-failure-trimmed.mp4"></video>
+
+<p class="fragment roll-in">
+<i>Looks familiar?</i>
+</p>
+
+<p class="fragment roll-in">
+Often you need to: select <i>one cell at a time</i>, copy &amp; paste, repeat.
+</p>
+
+</section>
+<section id="slide-pdf-table-extraction-tools" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h3 id="pdf-table-extraction-tools">PDF Table Extraction Tools</h3>
+<ul>
+<li><a href="https://tabula.technology/">Tabula</a> - Java-based, open-source.</li>
+<li><a href="https://github.com/jsvine/pdfplumber">pdfplumber</a> - Python, open-source.</li>
+<li><a href="https://pdftables.com/">pdftables</a> - Python, proprietary, paid.</li>
+<li><a href="https://github.com/ashima/pdf-table-extract">pdf-table-extract</a> - Python, open-source, no longer maintained.</li>
+<li><a href="https://ocr.space/">OCR.space</a> - Proprietary, free and paid online service.</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+There has to be an easier way to do that, right? In fact, there are many ways, some
+involve using proprietary, closed-source, and/or online hosted services for a fee.
+Others are open-source, and perform better or worse. Here are some examples,
+most notably the Java-based Tabula, and a number of other Python tools, which
+I've tried with various success rates, like pdfplumber, pdf-table-extract,
+OCR.space, etc.
+I won't go into detail about all those alternatives, as I won't have the time.
+But let me tell you the best tool I found, called Camelot.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-camelot-and-excalibur" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h2 id="camelot-and-excalibur">Camelot &amp; Excalibur</h2>
+<aside class="notes">
+<p>
+I've come across Camelot while searching for a better Python-based,
+open-source, PDF table extraction library, which gives me control over the
+process, and is actively maintained and free to use.
+Camelot can be used as a CLI or a library package directly, while Excalibur is
+a Flask-based web frontend for Camelot.
+Camelot was started in 2016 at SocialCops by Vinayak Mehta, and was originally
+created to deal with the vast amounts of open data published by Indian
+government and administration in PDF format with lots of tables.
+</p>
+
+</aside>
+
+<p>
+<b>Camelot</b><br />
+<img src="img/camelot.png" alt="camelot.png" /><br />
+<a href="https://github.com/camelot-dev/camelot">https://github.com/camelot-dev/camelot</a>
+</p>
+
+<p>
+<b>Excalibur</b><br />
+<img src="img/excalibur.png" alt="excalibur.png" /><br />
+<a href="https://github.com/camelot-dev/excalibur">https://github.com/camelot-dev/excalibur</a><br />
+<a href="https://tryexcalibur.com">https://tryexcalibur.com</a>
+</p>
+
+<p>
+Started in 2016 by <b>Vinayak Mehta</b> <img src="img/icontwitter.png" alt="icontwitter.png" /> <code>@vortex_ape</code> <br />
+at <code>SocialCops</code> in Bangalore, India.
+</p>
+
+</section>
+<section id="slide-camelot-features" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h3 id="camelot-features">Camelot: Features</h3>
+<ul>
+<li class="fragment roll-in"><b>Excellent</b> <a href="https://camelot-py.readthedocs.io/">documentation</a></li>
+<li class="fragment roll-in">Python-based, MIT licensed</li>
+<li class="fragment roll-in">Two extraction algorithms: <i>Lattice</i> and <i>Stream</i></li>
+<li class="fragment roll-in">Works well out-of-the-box, but <b>very configurable</b></li>
+<li class="fragment roll-in">Exports to CSV, TSV, Excel, JSON, HTML, or <b>Pandas DataFrames</b>!</li>
+<li class="fragment roll-in">Visual debugging and plotting with <code>matplotlib</code></li>
+<li class="fragment roll-in">Actively maintained, <b>contributors welcome!</b></li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Here are some of the best features I like about Camelot. It has an EXCELLENT
+documentation, it is written Python, MIT licensed, gives you control over the
+extraction process, supports two extraction algorithms, "Lattice" for
+grid-like tables, and "Stream", for grid-less tables with a lot of whitespace.
+Works well out-of-the-box, often automatically recognizing tables on PDF
+pages.
+Also the extracted tables are exportable directly in various useful formats,
+like CSV, TSV, Excel, JSON, HTML, and even Pandas DataFrames! There are also
+built-in support for plotting the recognized tables, text, grid, lines, etc.
+using matplotlib. And last but not least, Camelot is actively maintained and
+welcomes new contributors so we can, together make it even more amazing!
+</p>
+
+</aside>
+
+</section>
+<section id="slide-camelot-and-excalibur-installation" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h3 id="camelot-and-excalibur-installation">Camelot &amp; Excalibur: Installation</h3>
+<p>
+<code>Camelot</code>
+</p>
+
+<p>
+Using <a href="https://conda.io/docs/">Conda</a> (<i>easiest way</i>)
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >conda install -c conda-forge camelot-py
+</code></pre>
+</div>
+
+<p>
+Using <code>pip</code>, <i>after installing <a href="https://camelot-py.readthedocs.io/en/master/user/install-deps.html">prerequisites</a>:</i> <code>tk</code> and <code>ghostscript</code>
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >pip install --upgrade pip camelot-py[cv]
+</code></pre>
+</div>
+
+<p>
+<br />
+<br />
+</p>
+
+<p>
+<code>Excalibur</code>
+</p>
+
+<p>
+Using <code>pip</code>, <i>after installing <a href="https://camelot-py.readthedocs.io/en/master/user/install-deps.html">prerequisites</a></i> <code>tk</code> and <code>ghostscript</code>
+</p>
+<div class="org-src-container">
+
+<pre><code class="bash" >pip install --upgrade pip excalibur-py
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf9e62b7" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h2 id="orgf9e62b7">Demo Time!</h2>
+
+</section>
+</section>
+<section>
+<section id="slide-future-improvements-q-and-a" data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+<h2 id="future-improvements-q-and-a">Future Improvements / Q&amp;A</h2>
+<p>
+<br />
+</p>
+<ul>
+<li class="fragment roll-in">Performance improvements</li>
+<li class="fragment roll-in">Replacing <code>Ghostscript</code> with alternatives</li>
+<li class="fragment roll-in">More tests</li>
+<li class="fragment roll-in">Better memory footprint with large PDFs</li>
+<li class="fragment roll-in"><code>&lt;your-favourite-feature?&gt;</code></li>
+
+</ul>
+
+<p>
+<br />
+</p>
+
+</section>
+<section  data-background-size="40%" data-background-repeat="no-repeat" data-background-transition="slide">
+
+<p>
+<b>Questions ?</b>
+</p>
+
+<p>
+<br />
+<br />
+</p>
+
+<p>
+<code>@dimitern</code><br />
+<img src="img/icontwitter.png" alt="icontwitter.png" />
+<img src="img/icongithub.png" alt="icongithub.png" />
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="./common/reveal.js-3.8.0/lib/js/head.min.js"></script>
+<script src="./common/reveal.js-3.8.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: false,
+history: true,
+center: false,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+width: 1440,
+height: 900,
+margin: 0.20,
+minScale: 0.50,
+maxScale: 3.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{src:'./common/js/jquery-3.3.1.slim.min.js', async:false},
+ { src: './common/reveal.js-3.8.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './common/reveal.js-3.8.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './common/reveal.js-3.8.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: './common/reveal.js-3.8.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: './common/reveal.js-3.8.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+,
+ { src: './common/reveal.js-3.8.0/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }]
+,pdfMaxPagesPerSlide: 1, pdfSeparateFragments: false});
+</script>
+</body>
+</html>

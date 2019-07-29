@@ -1,0 +1,335 @@
+#+TITLE: Extracting Tabular Data from PDFs using Camelot and Excalibur
+#+AUTHOR: Dimiter Naydenov
+#+EMAIL: @dimitern
+#+STARTUP: indent overview
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: reveal_title_slide:nil
+#+OPTIONS: reveal_rolling_links:nil
+#+OPTIONS: reveal_keyboard:t
+#+OPTIONS: reveal_overview:t
+#+OPTIONS: reveal_control:t
+#+OPTIONS: reveal_center:nil
+#+OPTIONS: reveal_progress:nil
+#+OPTIONS: reveal_history:t
+#+OPTIONS: reveal_width:1440
+#+OPTIONS: reveal_height:900
+#+REVEAL_MARGIN: 0.2
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 3.5
+#+REVEAL_THEME: beige
+#+REVEAL_ROOT: ./common/reveal.js-3.8.0/
+#+REVEAL_EXTRA_CSS: ./css/extra.css
+#+REVEAL_EXTRA_JS: {src:'./common/js/jquery-3.3.1.slim.min.js', async:false}
+#+REVEAL_TRANS: linear
+#+REVEAL_SPEED: default
+#+REVEAL_HLEVEL: 1
+#+REVEAL_PLUGINS: (markdown highlight notes zoom print-pdf search)
+#+REVEAL_DEFAULT_FRAG_STYLE: roll-in
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: slide
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_SIZE: 40%
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_REPEAT: no-repeat
+#+REVEAL_INIT_SCRIPT: pdfMaxPagesPerSlide: 1, pdfSeparateFragments: false
+
+
+* Extracting Tables from PDFs
+:PROPERTIES:
+:CUSTOM_ID: title
+:END:
+
+/Using [[https://github.com/socialcopsdev/camelot][Camelot]] and [[https://github.com/camelot-dev/excalibur][Excalibur]] to automate PDF table extraction and export/
+
+\\
+\\
+
+Dimiter Naydenov
+
+=@dimitern= [[https://twitter.com/dimitern][file:img/icontwitter.png]] [[https://github.com/dimitern][file:img/icongithub.png]]
+
+\\
+\\
+
+[[https://ep2019.europython.eu/][file:img/europython-2019-logo-trans-bg-smaller.png]]
+
+#+BEGIN_NOTES
+Hello everyone, and thanks for joining!
+
+My name is Dimiter Naydenov, and I'm a freelance Python developer from Sofia,
+Bulgaria.
+
+Today I'm going to talk to you about extracting tabular data from Portable
+Document Format files, the problems I've faced, and the solutions I found.
+
+Let's start with a quick overview of what this talk will be about.
+#+END_NOTES
+
+* Overview
+:PROPERTIES:
+:CUSTOM_ID: overview
+:END:
+
+#+ATTR_REVEAL: :frag (t)
+- PDF: brief history, structure, representing tables
+- Camelot & Excalibur: overview, main features, installation
+- Demo: quick tour of Camelot, visual debugging, and plotting
+- Future improvements, Q&A
+
+#+BEGIN_NOTES
+First, we're have a brief look at the history of the Portable Document Format,
+and its internal structure, specifically the way tabular data is represented,
+and why extracting such data is problematic for PDFs. On to Camelot and
+Excalibur, the main focus of this talk, we'll see how to install both, and
+list the main features which make tabular data extraction easy and under your
+control. Then it's time for a demonstration, where I'll try to get you as
+excited about Camelot as I am, hopefully. At the end we'll look into the
+possible future improvements, and I'll address any questions you may have,
+time permitting. So let's get started with the Portable Document Format.
+#+END_NOTES
+
+* Portable Document Format
+:PROPERTIES:
+:CUSTOM_ID: portable-document-format
+:END:
+
+/almost 30 years ago.../
+
+#+BEGIN_QUOTE
+This document describes the base technology and ideas behind the project
+named "Camelot".\\
+[...] a universal way to communicate documents across a wide variety of
+machine configurations, operating systems and communication networks. [...]
+viewable on any display [...] printable on any modern printers.
+\\
+\\
+---The Camelot Project, John Warnock
+#+END_QUOTE
+
+[[https://theblog.adobe.com/evolution-digital-document-celebrating-adobe-acrobats-25th-anniversary/][source:]]
+Evolution of the Digital Document:\\
+Celebrating Adobe Acrobat’s 25th Anniversary
+
+#+BEGIN_NOTES
+Almost 30 years ago, if not more, John Warnock, one of the founders of Adobe
+Systems started what was unofficially called "The Camelot Project", and
+described its goals in a manifesto sort of document. Here you can see a few
+excerpts from that document. The goal was to create a universal document
+format, that was easy to exchange between different machines, OSes, and
+environments. Each PDF can contain rich content, hyperlinks, images, text, and
+can be printed on a variety of printers, yet still look the same way as its
+author intended. The quote you see is from an article called "Evolution o the
+Digital Document: Celebrating Adobe Acrobat's 25th Anniversary."
+#+END_NOTES
+
+** PDF: At a Glance
+:PROPERTIES:
+:CUSTOM_ID: pdf-at-a-glance
+:END:
+
+#+ATTR_REVEAL: :frag (t)
+- Created in the early 1990s by Adobe Systems
+- Predates the World Wide Web and HTML
+- Proprietary format initially, released as open standard as of v1.7
+- Based on a subset of Adobe PostScript
+- Self-contained: embedded fonts, attachments, annotations, rich media, etc.
+- 13 versions released; an ISO standard since 2008 (PDF 1.7).
+- Structured as a hierarchy of objects (words, paragraphs, fonts, etc.)
+
+#+ATTR_REVEAL: :frag t
+[[file:img/page-by-nc-sa.png]]
+
+#+BEGIN_NOTES
+So here are some quick facts about PDF. It was created in the early 1990s by Adobe
+Systems, and it actually predates the World Wide Web and the HTML format by a few
+years. When it was created, it was a proprietary format, but later in 2008 Adobe
+decided to publish it as an open standard by the International Standards Organization.
+PDF is based on a subset of the much larger Adobe PostScript - a page description
+language, but unlike PS, PDF is designed to be self-contained, utilizing technologies
+like fonts embedding, attachments, annotations, rich media, hyperlinks, as well as text.
+Since its conception more than 13 versions of the PDF standard  were defined. Internally,
+PDFs are structured as a hierarchy of objects (words, paragraphs, fonts, pages, etc).
+Here's a high-level diagram of the structure, and the next slide shows a bit
+more detail.
+#+END_NOTES
+
+** PDF: Structure
+:PROPERTIES:
+:CUSTOM_ID: pdf-structure
+:reveal_background: ./img/simplefile-by-nc-sa.png
+:END:
+
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+
+source: [[https://gendignoux.com/blog/2016/10/04/pdf-basics.html][Introduction
+to PDF syntax: by Guillaume Endignoux]]
+
+#+BEGIN_NOTES
+There is a header, and trailer sections, along with catalogs of objects,
+starting from each page and its child objects, text boxes, paragraphs, fonts,
+cross references. And... no tables whatsoever. There's no concept of a table
+in PDF, what looks like a table is actually a bunch of absolutely positioned
+text boxes along with the fonts they should be using. Here's a quick video I
+captured of me trying to select individual rows, columns, or cells in a PDF
+table.
+#+END_NOTES
+
+** Text Selection & PDF "Tables"
+:PROPERTIES:
+:reveal_data_state: alert
+:CUSTOM_ID: text-selection-and-pdf-tables
+:END:
+
+#+BEGIN_EXPORT html
+<video class="right fragment" mute loop data-autoplay src="img/text-selection-failure-trimmed.mp4"></video>
+#+END_EXPORT
+
+#+ATTR_REVEAL: :frag t
+/Looks familiar?/
+
+#+ATTR_REVEAL: :frag t
+Often you need to: select /one cell at a time/, copy & paste, repeat.
+
+** PDF Table Extraction Tools
+:PROPERTIES:
+:CUSTOM_ID: pdf-table-extraction-tools
+:END:
+
+- [[https://tabula.technology/][Tabula]] - Java-based, open-source.
+- [[https://github.com/jsvine/pdfplumber][pdfplumber]] - Python, open-source.
+- [[https://pdftables.com/][pdftables]] - Python, proprietary, paid.
+- [[https://github.com/ashima/pdf-table-extract][pdf-table-extract]] - Python, open-source, no longer maintained.
+- [[https://ocr.space/][OCR.space]] - Proprietary, free and paid online service.
+
+#+BEGIN_NOTES
+There has to be an easier way to do that, right? In fact, there are many ways, some
+involve using proprietary, closed-source, and/or online hosted services for a fee.
+Others are open-source, and perform better or worse. Here are some examples,
+most notably the Java-based Tabula, and a number of other Python tools, which
+I've tried with various success rates, like pdfplumber, pdf-table-extract,
+OCR.space, etc.
+I won't go into detail about all those alternatives, as I won't have the time.
+But let me tell you the best tool I found, called Camelot.
+#+END_NOTES
+
+* Camelot & Excalibur
+:PROPERTIES:
+:CUSTOM_ID: camelot-and-excalibur
+:END:
+
+#+BEGIN_NOTES
+I've come across Camelot while searching for a better Python-based,
+open-source, PDF table extraction library, which gives me control over the
+process, and is actively maintained and free to use.
+Camelot can be used as a CLI or a library package directly, while Excalibur is
+a Flask-based web frontend for Camelot.
+Camelot was started in 2016 at SocialCops by Vinayak Mehta, and was originally
+created to deal with the vast amounts of open data published by Indian
+government and administration in PDF format with lots of tables.
+#+END_NOTES
+
+*Camelot*\\
+[[file:img/camelot.png]]\\
+https://github.com/camelot-dev/camelot
+
+*Excalibur*\\
+[[file:img/excalibur.png]]\\
+https://github.com/camelot-dev/excalibur\\
+https://tryexcalibur.com
+
+Started in 2016 by *Vinayak Mehta* [[file:img/icontwitter.png]] =@vortex_ape= \\
+at =SocialCops= in Bangalore, India.
+
+** Camelot: Features
+:PROPERTIES:
+:CUSTOM_ID: camelot-features
+:END:
+
+#+ATTR_REVEAL: :frag (t)
+- *Excellent* [[https://camelot-py.readthedocs.io/][documentation]]
+- Python-based, MIT licensed
+- Two extraction algorithms: /Lattice/ and /Stream/
+- Works well out-of-the-box, but *very configurable*
+- Exports to CSV, TSV, Excel, JSON, HTML, or *Pandas DataFrames*!
+- Visual debugging and plotting with =matplotlib=
+- Actively maintained, *contributors welcome!*
+
+#+BEGIN_NOTES
+Here are some of the best features I like about Camelot. It has an EXCELLENT
+documentation, it is written Python, MIT licensed, gives you control over the
+extraction process, supports two extraction algorithms, "Lattice" for
+grid-like tables, and "Stream", for grid-less tables with a lot of whitespace.
+Works well out-of-the-box, often automatically recognizing tables on PDF
+pages.
+Also the extracted tables are exportable directly in various useful formats,
+like CSV, TSV, Excel, JSON, HTML, and even Pandas DataFrames! There are also
+built-in support for plotting the recognized tables, text, grid, lines, etc.
+using matplotlib. And last but not least, Camelot is actively maintained and
+welcomes new contributors so we can, together make it even more amazing!
+#+END_NOTES
+
+** Camelot & Excalibur: Installation
+:PROPERTIES:
+:CUSTOM_ID: camelot-and-excalibur-installation
+:END:
+
+=Camelot=
+
+Using [[https://conda.io/docs/][Conda]] (/easiest way/)
+#+BEGIN_SRC bash
+conda install -c conda-forge camelot-py
+#+END_SRC
+
+Using =pip=, /after installing [[https://camelot-py.readthedocs.io/en/master/user/install-deps.html][prerequisites]]:/ =tk= and =ghostscript=
+#+BEGIN_SRC bash
+pip install --upgrade pip camelot-py[cv]
+#+END_SRC
+
+\\
+\\
+
+=Excalibur=
+
+Using =pip=, /after installing [[https://camelot-py.readthedocs.io/en/master/user/install-deps.html][prerequisites]]/ =tk= and =ghostscript=
+#+BEGIN_SRC bash
+pip install --upgrade pip excalibur-py
+#+END_SRC
+
+* Demo Time!
+
+* Future Improvements / Q&A
+:PROPERTIES:
+:CUSTOM_ID: future-improvements-q-and-a
+:END:
+
+\\
+#+ATTR_REVEAL: :frag (t)
+- Performance improvements
+- Replacing =Ghostscript= with alternatives
+- More tests
+- Better memory footprint with large PDFs
+- =<your-favourite-feature?>=
+
+\\
+
+#+REVEAL: split
+
+*Questions ?*
+
+\\
+\\
+
+=@dimitern=\\
+[[file:img/icontwitter.png]]
+[[file:img/icongithub.png]]
