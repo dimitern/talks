@@ -1,5 +1,5 @@
-# talks :: @dimitern
-Slides for my talks at conferences
+# talks :: [@dimitern](https://twitter.com/dimitern/)
+Slides, videos, and other materials from my talks at conferences
 
 ## Extracting Tabular Data from PDFs with Camelot and Excalibur
 ***EuroPython 2019**, July 10, 2019, Basel, Switzerland*
