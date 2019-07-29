@@ -1,4 +1,4 @@
-# talks
+# talks :: @dimitern
 Slides for my talks at conferences
 
 ## Extracting Tabular Data from PDFs with Camelot and Excalibur
