@@ -4,8 +4,7 @@ Slides for my talks at conferences
 ## Extracting Tabular Data from PDFs with Camelot and Excalibur
 ***EuroPython 2019**, July 10, 2019, Basel, Switzerland*
 
-Slides link:
-https://dimitern.github.io/ep2019./ep2019/extracting-tabular-data-from-pdfs-with-camelot-and-excalibur.html
+Slides link: https://dimitern.github.io/ep2019/extracting-tabular-data-from-pdfs-with-camelot-and-excalibur.html
 
 EuroPython talk page: https://ep2019.europython.eu/talks/ojMVZ7T-extracting-tabular-data-from-pdfs-with-camelot-and-excalibur/
 
