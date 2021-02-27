@@ -8,6 +8,8 @@ Slides, videos, and other materials from my talks at conferences
 
 [Talk page](https://ep2019.europython.eu/talks/ojMVZ7T-extracting-tabular-data-from-pdfs-with-camelot-and-excalibur/)
 
+[Video](https://www.youtube.com/watch?v=XmYSyqGbW2s)
+
 [Original (uncut) video stream](https://youtu.be/jnDfNJe-GlE?t=14306)
 
 ## All You Need is Pandas: Unexpected Success Stories
